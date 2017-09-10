@@ -31,3 +31,7 @@ To obtain someones updated code (from the master branch) from github type the fo
 ```
 git pull origin master
 ```
+
+If your are not comfortable with terminal or git please install one of the desktop GUI that are avaiable:
+
+https://git-scm.com/download/gui/win

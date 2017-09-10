@@ -1,4 +1,4 @@
-# spacehardware Basic Git Commands
+# Spacehardware Basic Git Commands
 
 **Requires git to be installed** ask me if you need help
 

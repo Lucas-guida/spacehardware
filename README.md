@@ -35,3 +35,9 @@ git pull origin master
 If your are not comfortable with terminal or git please install one of the desktop GUI that are avaiable:
 
 https://git-scm.com/download/gui/win
+
+# Check to see if Anaconda is connected to OM
+```
+from OMPython import OMCSessionZMQ
+omc = OMCSessionZMQ()
+```

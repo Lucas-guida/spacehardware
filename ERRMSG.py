@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # ERRMSG()
 # This function will display an error meassage to the console, and provide an auditory warning.
 def ERRMSG(string):

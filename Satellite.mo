@@ -6,4 +6,7 @@ model Satellite
   parameter Real Nddot6 "TLE paramter rev/d^3";
   parameter Real tstart "Simulation start time,seconds since Epoch (s)";
   
+  output Vector p_sat_pf "Position, Perifocal coords";
+  output Vector v_sat_pf "Velocity Peerifocal coords";
+
 end Satellite;

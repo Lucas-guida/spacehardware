@@ -8,9 +8,9 @@ root.filename =  filedialog.askopenfilename(initialdir = "/",title = "Select fil
 """
 def ReadStationFile(filename):
     file = open(filename,"r");
-    n = 11;
+    n = 12;
     count =0;
-    data=[None]*11;
+    data=[None]*n;
     
     for line in file:
         data[count]=line;
@@ -27,6 +27,6 @@ def ReadStationFile(filename):
     az_el_lim = az_el_limSet(data[6],data[7],data[8]);
     
     Station = StationSet(data[0],data[1],data[2],data[3],data[4],data[5],\
-                         az_el_lim,data[9],data[10],data[11]);
+                         az_el_lim,data[9],data[10]);
                          
     return Station;

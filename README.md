@@ -41,3 +41,30 @@ https://git-scm.com/download/gui/win
 from OMPython import OMCSessionZMQ
 omc = OMCSessionZMQ()
 ```
+
+# The file unittest is used to test the code
+## 1) Remember to import the function at the top of the file
+```
+from filename import functionname
+```
+## 2) Create a test case
+```
+def test_functionName(self):
+  self.assertEqual(function(paramater),Expexted Answer)
+```
+
+# Creating the coverage report
+## 1) open anaconda prompt and type
+```
+pip install coverage
+```
+## 2) navitage to directory and run
+```
+coverage run unittest.py
+```
+This runs the unittester and checks the code coverage of all supporting functions and the unittester itself
+
+## 3) Generate command line report
+```
+coverage report
+```

@@ -8,5 +8,5 @@ Satellite = ReadNoradTLE(line0,line1,line2);
 
 print(Satellite);
 print('\n');
-print(output.name);
+print(Satellite.name);
 

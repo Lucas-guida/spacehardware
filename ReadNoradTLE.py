@@ -4,7 +4,7 @@ def ReadNoradTLE(line0,line1,line2):
     SatelliteSet = namedtuple('Satellite',['name','refepoch','incl','raan', \
     'eccn','argper','meanan','meanmo','ndot','nddot6','bstar','orbitnum'])
     
-    name = line0.split(" ")[1];
+    name = line0;
     
     lineTemp1 = line1.split(" ");
     

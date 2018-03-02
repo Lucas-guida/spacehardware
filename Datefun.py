@@ -1,5 +1,4 @@
 import datetime
-import time
 
 def doy(YR,MD,D):
    days_in_the_year = (datetime.date(YR, MD, D) - datetime.date(YR,1,1)).days + 1

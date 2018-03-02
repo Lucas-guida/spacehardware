@@ -60,9 +60,7 @@ def ReadNoradTLE(line0,line1,line2):
     
     name = line0;
     
-    lineTemp1 = line1.split(" ");
-    
-    refepoch = lineTemp1[3];
+    refepoch = lineTemp1[18:31];
     ndot = lineTemp1[4];
     nddot6 = lineTemp1[5];
     bstar = lineTemp1[6];

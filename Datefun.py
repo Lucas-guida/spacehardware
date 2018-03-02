@@ -14,10 +14,12 @@ def frcofd(HR,MI,SE):
     return (HR + MI/60 + SE/3600)/24
     
 def ep2dat(NotJulianDate):
+    ## need to change that from slides 5 57 is the difference
+    
     year = int(NotJulianDate[:2])
     days = float(NotJulianDate[2:])
     
-    if year<19:
+    if year<57:
         year = 2000+year;
     else:
         year = 1900+year;

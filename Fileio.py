@@ -44,10 +44,11 @@ def ReadStationFile(filename):
     az_el_limSet = namedtuple('az_el_limSet',['az','elmin','elmax']);
     
     
-    az_el_lim = az_el_limSet(data[6],data[7],data[8]);
+    az_el_lim = az_el_limSet(data[6][:-1],data[7][:-1],data[8][:-1]);
     
-    Station = StationSet(data[0],data[1],data[2],data[3],data[4],data[5],\
-                         az_el_lim,data[9],data[10]);
+    Station = StationSet(data[0][:-1],data[1][:-1],data[2][:-1],data[3][:-1],\
+                         data[4][:-1],data[5][:-1],az_el_lim,data[9][:-1],\
+                         data[10]);
                          
     return Station;
 

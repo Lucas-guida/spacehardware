@@ -1,8 +1,12 @@
 import unittest
-from Datefun import doy,frcofd,ep2dat
-#from Fileio import *
+from Datefun import doy,frcofd,ep2dat,curday
+from Fileio import errmsg,Banner,ReadStationFile,ReadNoradTLE
 
 class TestAROMethods(unittest.TestCase):
+    
+    # Test of Datefun functions
+    def test_curday(self):
+        self.assertIsNotNone(curday())
     
     def test_doy(self):
         # Checks to see if it equals the expected values
@@ -17,6 +21,22 @@ class TestAROMethods(unittest.TestCase):
     def test_ep2dat(self):
         self.assertEqual(ep2dat('8650.28438588'),'1986-02-20 06:49:30.940032')
         self.assertEqual(ep2dat('0850.28438588'),'2008-02-20 06:49:30.940032')
+        
+    # Test of Fileio functions
+    
+    def test_ReadNoradTLE(self):
+        line0 = 'name';
+        line1 = '1 20830U 90088A 05053.88610693 .00000015 00000-0 00000-0 0 2777';
+        line2 = '2 20830 55.1681 285.7420 0086707 136.1120 224.6824 2.00574691105728';
+        Satallite = ReadNoradTLE(line0,line1,line2);
+        self.assertEqual(Satallite.eccn,'0086707');
+        self.assertEqual(Satallite.incl,'55.1681');
+        self.assertEqual(Satallite.meanan,'224.6824');
+        
+    def test_ReadStationFile(self):
+        Station = ReadStationFile('test.txt');
+        self.assertEqual(Station.stnlong,'281.92');
+        self.assertEqual(Station.az_el_lim.elmin,'9.0');
         
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestAROMethods)

@@ -1,7 +1,6 @@
 import unittest
-from doy import doy
-from frcofd import frcofd
-from ep2dat import ep2dat
+from Datefun import doy,frcofd,ep2dat
+#from Fileio import *
 
 class TestAROMethods(unittest.TestCase):
     
@@ -17,6 +16,7 @@ class TestAROMethods(unittest.TestCase):
 
     def test_ep2dat(self):
         self.assertEqual(ep2dat('8650.28438588'),'1986-02-20 06:49:30.940032')
+        self.assertEqual(ep2dat('0850.28438588'),'2008-02-20 06:49:30.940032')
         
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestAROMethods)

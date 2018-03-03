@@ -1,5 +1,6 @@
 record Vector
-  parameter Real x;
-  parameter Real y;
-  parameter Real z;
+  Real x;
+  Real y;
+  Real z;
+  
 end Vector;

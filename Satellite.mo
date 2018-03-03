@@ -29,6 +29,7 @@ model Satellite
   //output Vector v_sat_pf "Velocity, Perifocal coords";
   
   Vector p_sat_pf;
+  Vector v_sat_pf;
   
 equation
     M = mod(M0 + N0*(360/86400)*t + 360*Ndot2*(t/86400)^2 + 360*(Nddot6)*(t/86400)^3,360);
@@ -53,5 +54,9 @@ equation
     p_sat_pf.x = x;
     p_sat_pf.y = y;
     p_sat_pf.z = 0;
+    
+    v_sat_pf.x = dx;
+    v_sat_pf.y = dy;
+    v_sat_pf.z = 0;
     
 end Satellite;

@@ -1,6 +1,5 @@
 record Vector
   Real x;
   Real y;
-  Real z;
-  
+  Real z; 
 end Vector;

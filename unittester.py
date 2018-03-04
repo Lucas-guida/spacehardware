@@ -28,21 +28,21 @@ class TestAROMethods(unittest.TestCase):
     
     def test_ReadNoradTLE(self):
         line0 = 'name';
-        line1 = '1 20830U 90088A 05053.88610693 .00000015 00000-0 00000-0 0 2777';
-        line2 = '2 20830 55.1681 285.7420 0086707 136.1120 224.6824 2.00574691105728';
+        line1 = '1 20830U 90088A   05053.88610693  .00000015  00000-0  00000-0 0  2777';
+        line2 = '2 20830  55.1681 285.7420 0086707 136.1120 224.6824  2.00574691105728';
         Satellite = ReadNoradTLE(line0,line1,line2);
         self.assertEqual(Satellite.eccn,'0086707');
         self.assertEqual(Satellite.incl,'55.1681');
         self.assertEqual(Satellite.meanan,'224.6824');
         
     def test_ReadStationFile(self):
-        Station = ReadStationFile('test.txt');
-        self.assertEqual(Station.stnlong,'281.92');
-        self.assertEqual(Station.az_el_lim.elmin,'9.0');
+        Station = ReadStationFile('station.dat');
+        self.assertEqual(Station.stnlong,'281.9269597222222');
+        self.assertEqual(Station.az_el_lim.elmin,['9.0', '37.0', '9.0']);
         
    
-    def test_SatelliteModel(self):
-         omc = OMCSesionZMQ();
+    #def test_SatelliteModel(self):
+     #    omc = OMCSesionZMQ();
          
         
 if __name__ == '__main__':

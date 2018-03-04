@@ -81,23 +81,19 @@ def ReadNoradTLE(line0,line1,line2):
     
     name = line0;
     
-    lineTemp1 = line1.split(" ")
+    refepoch = line1[18:32];
+    ndot = line1[34:43];
+    nddot6 = line1[45:52];
+    bstar = line1[52:61];
+    orbitnum = line1[65:69];
     
-    refepoch = lineTemp1[18:31];
-    ndot = lineTemp1[4];
-    nddot6 = lineTemp1[5];
-    bstar = lineTemp1[6];
-    orbitnum = lineTemp1[8];
-    
-    lineTemp2 = line2.split(" ");
-    
-    incl = lineTemp2[2];
-    raan = lineTemp2[3];
-    eccn = lineTemp2[4];
-    argper = lineTemp2[5];
-    meanan = lineTemp2[6];
-    meanmo = lineTemp2[7];    
-    
+    incl = line2[9:16];
+    raan = line2[17:25];
+    eccn = line2[26:33];
+    argper = line2[34:42];
+    meanan = line2[43:51];
+    meanmo = line2[52:69];    
+        
     Satellite = SatelliteSet(name,refepoch,incl,raan,eccn,argper,meanan,meanmo\
                              ,ndot,nddot6,bstar,orbitnum);
     return Satellite

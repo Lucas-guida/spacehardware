@@ -1,25 +1,29 @@
 model Satellite
-  parameter Real ecc = 0.0001492 "Eccentriciy";
-  parameter Real M0 = 326.2322 "Mean anomaly at epoch (deg)";
-  parameter Real N0 = 12.62256095 "Mean motion at Epoch (rev/d)";
-  parameter Real Ndot2 = 0.1 "TLE drag paramter rev/d^2";
-  parameter Real Nddot6 = 0.1"TLE paramter rev/d^3";
+  parameter Real ecc = 0.0086707 "Eccentriciy";
+  parameter Real M0 = 224.6824 "Mean anomaly at epoch (deg)";
+  parameter Real N0 = 2.00574691105728 "Mean motion at Epoch (rev/d)";
+  parameter Real Ndot2 = 0.00000015 "TLE drag paramter rev/d^2";
+  parameter Real Nddot6 = 0.0"TLE paramter rev/d^3";
   parameter Real tstart = 0 "Simulation start time,seconds since Epoch (s)";
   parameter Real pi = 3.141592653589793;
   parameter Real GM = 398600.4418 "km^3/s^2";
-  Real M, dM, E, n, theta, dtheta, r, a, x, y, h, dr, dx, dy;
-  Real t = tstart;
+  Real M, E, theta, dtheta, r, a, x, y, h, dr, dx, dy; // removed n and dM
+  Real t = 0;
 public
   Vector p_sat_p;
   Vector v_sat_p;
 equation
-   M = mod(M0 + N0*(360/86400)*t + 360*Ndot2*(t/86400)^2 + 360*(Nddot6)*(t/86400)^3,360);
-   dM = mod(N0*(360/86400) + 2*360*Ndot2*(t/86400) + 3*360*(Nddot6)*(t/86400),360);
-   M = E + ecc*sin(E);
-   dM*n = N0*(360/86400) + 2*360*Ndot2*(t/86400^2) + 3*360*(Nddot6)*(t^2/86400^3);
+   //working
+   M = mod(M0 + N0*(360/86400)*t + 360*Ndot2*(t/86400)^2 + 360*(Nddot6)*(t/86400)^3,360)*3.141592653589793/180;
+   M = E + ecc*sin(E*3.141592653589793/180);
    tan(E/2) = sqrt((1 - ecc)/(1 + ecc))*tan(theta/2);
-   dtheta = n*sqrt(1 - ecc^2)/(1 - ecc*cos(E))^2;
-   n = (180/pi)*sqrt(GM/a^3);
+   
+   //Not needed
+   //dM*n = N0*(360/86400) + 2*360*Ndot2*(t/86400^2) + 3*360*(Nddot6)*(t^2/86400^3);
+   
+   //not working 
+   N0*360/24/60/60 = (180/pi)*sqrt(GM/a^3);
+   dtheta = N0*sqrt(1 - ecc^2)/(1 - ecc*cos(E))^2;
    r = a*(1 - ecc^2)/(1 + ecc*cos(theta));
    x = r*cos(theta);
    y = r*sin(theta);

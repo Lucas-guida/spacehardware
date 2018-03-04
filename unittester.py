@@ -2,6 +2,8 @@ import unittest
 from Datefun import doy,frcofd,ep2dat,curday
 from Fileio import errmsg,Banner,ReadStationFile,ReadNoradTLE
 
+from OMPython import OMCSessionZMQ
+
 class TestAROMethods(unittest.TestCase):
     
     # Test of Datefun functions
@@ -28,15 +30,20 @@ class TestAROMethods(unittest.TestCase):
         line0 = 'name';
         line1 = '1 20830U 90088A 05053.88610693 .00000015 00000-0 00000-0 0 2777';
         line2 = '2 20830 55.1681 285.7420 0086707 136.1120 224.6824 2.00574691105728';
-        Satallite = ReadNoradTLE(line0,line1,line2);
-        self.assertEqual(Satallite.eccn,'0086707');
-        self.assertEqual(Satallite.incl,'55.1681');
-        self.assertEqual(Satallite.meanan,'224.6824');
+        Satellite = ReadNoradTLE(line0,line1,line2);
+        self.assertEqual(Satellite.eccn,'0086707');
+        self.assertEqual(Satellite.incl,'55.1681');
+        self.assertEqual(Satellite.meanan,'224.6824');
         
     def test_ReadStationFile(self):
         Station = ReadStationFile('test.txt');
         self.assertEqual(Station.stnlong,'281.92');
         self.assertEqual(Station.az_el_lim.elmin,'9.0');
+        
+   
+    def test_SatelliteModel(self):
+         omc = OMCSesionZMQ();
+         
         
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestAROMethods)

@@ -1,10 +1,10 @@
 model Satellite
-  parameter Real ecc "Eccentriciy";
-  parameter Real M0 "Mean anomaly at epoch (deg)";
-  parameter Real N0 "Mean motion at Epoch (rev/d)";
-  parameter Real Ndot2 "TLE drag paramter rev/d^2";
-  parameter Real Nddot6 "TLE paramter rev/d^3";
-  parameter Real tstart "Simulation start time,seconds since Epoch (s)";
+  input Real ecc = 0.37255 "Eccentriciy";
+  input Real M0 = 2 "Mean anomaly at epoch (deg)";
+  input Real N0 = 0.1 "Mean motion at Epoch (rev/d)";
+  input Real Ndot2 = 0.1 "TLE drag paramter rev/d^2";
+  input Real Nddot6 = 0.1"TLE paramter rev/d^3";
+  input Real tstart = 0 "Simulation start time,seconds since Epoch (s)";
   
   //parameter Vector p_sat_pf(x=x,y=y,z=0.0); 
   
@@ -14,7 +14,7 @@ model Satellite
   Real M "mean anomoly";
   Real dM;
   Real t = tstart;
-  Real E;
+  Real E = 0.7;
   Real theta;
   Real dtheta;
   Real r;

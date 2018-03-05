@@ -17,16 +17,17 @@ equation
    M = mod(M0 + N0*(360/86400)*t + 360*Ndot2*(t/86400)^2 + 360*(Nddot6)*(t/86400)^3,360)*3.141592653589793/180;
    M = E + ecc*sin(E*3.141592653589793/180);
    tan(E/2) = sqrt((1 - ecc)/(1 + ecc))*tan(theta/2);
+   N0*360/24/60/60 = (180/pi)*sqrt(GM/a^3);
    
-   //Not needed
-   //dM*n = N0*(360/86400) + 2*360*Ndot2*(t/86400^2) + 3*360*(Nddot6)*(t^2/86400^3);
+   //I think are working
+   r = a*(1 - ecc^2)/(1 + ecc*cos(theta));
    
    //not working 
-   N0*360/24/60/60 = (180/pi)*sqrt(GM/a^3);
    dtheta = N0*sqrt(1 - ecc^2)/(1 - ecc*cos(E))^2;
-   r = a*(1 - ecc^2)/(1 + ecc*cos(theta));
+   
    x = r*cos(theta);
    y = r*sin(theta);
+   
    r = (h^2/GM)/(1 + ecc*cos(theta));
    dr = (GM/h)*ecc*sin(theta);
    dx = -(GM/h)*sin(theta);

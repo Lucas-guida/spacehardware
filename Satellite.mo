@@ -10,8 +10,8 @@ model Satellite
   Real M, E, theta, dtheta, r, a, x, y, h, dr, dx, dy; // removed n and dM
   Real t = 0;
 public
-  Vector p_sat_p;
-  Vector v_sat_p;
+  output Vector p_sat_p;
+  output Vector v_sat_p;
 equation
    //working
    M = mod(M0 + N0*(360/86400)*t + 360*Ndot2*(t/86400)^2 + 360*(Nddot6)*(t/86400)^3,360)*3.141592653589793/180;

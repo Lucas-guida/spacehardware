@@ -1,5 +1,5 @@
 model GndStn
-    parameter Real longitude = 20 "Station longitude (deg)";
+  parameter Real longitude = 20 "Station longitude (deg)";
   parameter Real latitude = 30 "Station latitude (deg)";
   parameter Real elevation = 50 "Station elevation (m)";
   constant Real a = 6378137 "Earth reference ellipsoid equatorial radius (m)";

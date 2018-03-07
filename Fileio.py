@@ -97,3 +97,26 @@ def ReadNoradTLE(line0,line1,line2):
     Satellite = SatelliteSet(name,refepoch,incl,raan,eccn,argper,meanan,meanmo\
                              ,ndot,nddot6,bstar,orbitnum);
     return Satellite
+
+import numpy as np
+def STKout(outfile,StartString,time,Coord,position,velocity):
+    
+    out = outfile + '.e';
+    fileobj = open(out,'w');
+    header = ['stk.v.4.3\n','\n','BEGIN Ephemeris\n','\n','NumberOfEphemerisPoints   60\n','\n','ScenarioEpoch           '+StartString+'\n',
+              'InterpolationMethod     Lagrange\n','InterpolationOrder      7\n','CentralBody             Earth\n','CoordinateSystem        '+Coord+'\n',
+              '\n','EphemerisTimePosVel\n','\n'];
+    fileobj.writelines(header);
+    length = time.shape[0]
+    for i in range(0,length):
+        curr_line = [np.array_str(time[i]).strip('[]'),' ',np.array_str(position[i]).strip('[]'),' ',np.array_str(velocity[i]).strip('[]'),'\n'];
+        fileobj.writelines(curr_line);
+                
+    fileobj.close;
+
+def anyKey():
+    input('press ENTER to continue...');
+    return
+    
+    
+    

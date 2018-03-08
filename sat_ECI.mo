@@ -22,7 +22,7 @@ algorithm
   p_sat_eci.x := pTemp[1,1];
   p_sat_eci.y := pTemp[2,1];
   p_sat_eci.z := pTemp[3,1];
-  v_sat_eci.x := pTemp[1,1];
-  v_sat_eci.y := pTemp[2,1];
-  v_sat_eci.z := pTemp[3,1];
+  v_sat_eci.x := vTemp[1,1];
+  v_sat_eci.y := vTemp[2,1];
+  v_sat_eci.z := vTemp[3,1];
 end sat_ECI;

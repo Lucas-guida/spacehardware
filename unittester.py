@@ -1,10 +1,16 @@
 import unittest
 from Datefun import doy,frcofd,ep2dat,curday
-from Fileio import errmsg,Banner,ReadStationFile,ReadNoradTLE
+from Fileio import ReadStationFile,ReadNoradTLE
 
 from OMPython import OMCSessionZMQ
+from OMPython import ModelicaSystem
 
 class TestAROMethods(unittest.TestCase):
+    omc = OMCSessionZMQ();
+    omc.sendExpression("loadModel(Modelica)");
+    omc.sendExpression("loadFile(getInstallationDirectoryPath() + \"../Users/Lucas/Desktop/trackingARO/Vector.mo\")");
+    
+    mod=ModelicaSystem("Satellite.mo","Satellite")
     
     # Test of Datefun functions
     def test_curday(self):
@@ -40,10 +46,8 @@ class TestAROMethods(unittest.TestCase):
         self.assertEqual(Station.stnlong,'281.9269597222222');
         self.assertEqual(Station.az_el_lim.elmin,['9.0', '37.0', '9.0']);
         
-   
     #def test_SatelliteModel(self):
-     #    omc = OMCSesionZMQ();
-         
+
         
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestAROMethods)

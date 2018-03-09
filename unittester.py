@@ -6,11 +6,12 @@ from OMPython import OMCSessionZMQ
 from OMPython import ModelicaSystem
 
 class TestAROMethods(unittest.TestCase):
-    omc = OMCSessionZMQ();
-    omc.sendExpression("loadModel(Modelica)");
-    omc.sendExpression("loadFile(getInstallationDirectoryPath() + \"../Users/Lucas/Desktop/trackingARO/Vector.mo\")");
+    #omc = OMCSessionZMQ();
+    #omc.sendExpression("loadModel(Modelica)");
+    #omc.sendExpression("loadFile(getInstallationDirectoryPath() + \"../Users/Lucas/Desktop/trackingARO/Vector.mo\")");
     
-    mod=ModelicaSystem("Satellite.mo","Satellite")
+    mod=ModelicaSystem("Sattraj.mo","Sattraj.Satellite")
+    
     
     # Test of Datefun functions
     def test_curday(self):

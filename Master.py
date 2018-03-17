@@ -29,6 +29,20 @@ TLEData = [()]*int(numSat);
 for i in range(0,int(numSat)):
     TLEData[i] = ReadNoradTLE(TLES[i][0],TLES[i][1],TLES[i][2]);
 
+
+# now we use this information to generate the LOS times
+'''
+times = initalize array of durations // # of seconds each sat is avaiable during interval
+
+for sat i in TLEData
+    get time from epoch to start of tracking time
+    pass TLE data into satelite model in OM
+    run it through ECI -> ECF -> look angles
+    get array back that would have look angles for the duration with 1e60 when it cant find it
+    determine durations
+    
+'''
+
 """this code is broken what you do
 root = tk.Tk()
 root.withdraw()

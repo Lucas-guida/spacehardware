@@ -1,4 +1,5 @@
-import datetime
+import datetime as dt
+import numpy as np
 
 def doy(YR,MD,D):
    days_in_the_year = (datetime.date(YR, MD, D) - datetime.date(YR,1,1)).days + 1
@@ -34,3 +35,34 @@ def ep2dat(NotJulianDate):
 
 def curday():
     return datetime.datetime.utcnow();
+
+# output is the JD of the epoch
+def ep2JD(epoch):
+    # computes the year we are in from epoch
+    year = int(epoch[:2]);
+    
+    refepochFloat = np.float(epoch);
+    dfrac = np.float(epoch[5:]);
+    
+    if year<57:
+        year = 2000+year;
+    else:
+        year = 1900+year;
+    # creates datetime object from year and days
+    RefEpochdt = dt.datetime.strptime(epoch[:5], '%y%j');
+    # gets the remaineder of hte day for datime object
+    hr = np.int(dfrac*24)
+    rem = dfrac*24 - hr
+    mins = np.int(60*rem)
+    rem2 = rem*60 - mins
+    secs = np.int(60*rem2)
+    mics = np.int((rem2*60-secs)*10**6)
+
+    RefEpochdt = RefEpochdt.replace(hour=hr, minute=mins, second=secs, microsecond=mics)
+    # gets the time delta from system refrence
+    RefEpochJD = RefEpochdt - dt.datetime(1,1,1);
+    # comutes JD from time delta + hardcoded value of system refence + 2 days lost from conversion
+    JD = RefEpochJD.days + RefEpochJD.seconds/86400 + 1721423.5 + 2;
+    #JD (1,1,1) = 1721423.5
+    
+    return JD

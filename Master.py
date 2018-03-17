@@ -1,5 +1,5 @@
 # Master.py- main program which calls other subfunctions
-from Datefun import doy,frcofd,ep2dat,curday
+from Datefun import doy,frcofd,ep2dat,curday,ep2JD
 from Fileio import Banner,errmsg,ReadStationFile,ReadNoradTLE,STKout,anyKey
 import tkinter as tk
 from tkinter import filedialog
@@ -31,16 +31,20 @@ for i in range(0,int(numSat)):
 
 
 # now we use this information to generate the LOS times
-'''
-times = initalize array of durations // # of seconds each sat is avaiable during interval
 
+#times = initalize array of durations // # of seconds each sat is avaiable during interval
+
+epoch = ep2JD(TLEData[0].refepoch);
+
+
+
+'''
 for sat i in TLEData
     get time from epoch to start of tracking time
     pass TLE data into satelite model in OM
     run it through ECI -> ECF -> look angles
     get array back that would have look angles for the duration with 1e60 when it cant find it
-    determine durations
-    
+    determine durations 
 '''
 
 """this code is broken what you do

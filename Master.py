@@ -27,9 +27,7 @@ for i in range(0,int(numSat)):
 #extracting TLE information
 TLEData = [()]*int(numSat);
 for i in range(0,int(numSat)):
-    TLEData[i] = ReadNoradTLE(TLES[i][0],TLES[i][1],TLES[i][2])
-
-
+    TLEData[i] = ReadNoradTLE(TLES[i][0],TLES[i][1],TLES[i][2]);
 
 """this code is broken what you do
 root = tk.Tk()

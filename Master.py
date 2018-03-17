@@ -6,6 +6,8 @@ from tkinter import filedialog
 import numpy as np
 import datetime as dt
 
+from OMPython import ModelicaSystem
+
 # startup
 Banner();
 
@@ -53,7 +55,16 @@ for i in range(0,int(numSat),1):
     
 #Start OM connection
 # now we use this information to generate the LOS times
-
+mod = ModelicaSystem("C:/Users/Lucas/Desktop/trackingARO/Sattraj.mo", "Sattraj.Satellite","Modelica.Constants")
+#for i in range(0,int(numSat)):
+i=1;
+mod.setParameters(M0=TLEData[i].meanan, N0=TLEData[i].meanmo, ecc=TLEData[i].eccn, Ndot2=TLEData[i].ndot, Nddot6=0, tstart=delta_tstart[i])
+print(mod.getParameters())
+mod.setSimulationOptions(stopTime=duration, stepSize=60.)
+mod.setSimulationOptions(startTime=0.)
+mod.simulate()
+print(mod.getSolutions())
+(time,x,y)=mod.getSolutions("time","x","y")
 #times = initalize array of durations // # of seconds each sat is avaiable during interval
 
 

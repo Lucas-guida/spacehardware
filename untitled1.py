@@ -1,8 +1,6 @@
-import datetime as dt
-from Datefun import doy,frcofd,ep2dat,curday,ep2JD
+from OMPython import ModelicaSystem
 
-apple = '05012.55'
+mod = ModelicaSystem("C:/Users/Lucas/Desktop/trackingARO/Sattraj.mo", "Sattraj.Satellite","Modelica.Constants")
+mod.setParameters(M0=267.1230, N0=2.005651, ecc=0.0034407, Ndot2=0.00000068, Nddot6=0. tstart=)
 
-epochJD = ep2JD(apple);
 
-print(epochJD)

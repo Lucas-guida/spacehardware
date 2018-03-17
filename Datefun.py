@@ -2,7 +2,7 @@ import datetime as dt
 import numpy as np
 
 def doy(YR,MD,D):
-   days_in_the_year = (datetime.date(YR, MD, D) - datetime.date(YR,1,1)).days + 1
+   days_in_the_year = (dt.date(YR, MD, D) - dt.date(YR,1,1)).days + 1
    return days_in_the_year
 
 # frcord(Hour,Minute,Second)
@@ -25,16 +25,16 @@ def ep2dat(NotJulianDate):
         year = 1900+year;
     
     #creates a date object starting at the given year
-    dt = datetime.datetime(year,1,1,0,0);
-    #computes a timd difference by the number of days in TLE
-    timediff = datetime.timedelta(days);
+    dat = dt.datetime(year,1,1,0,0);
+    #computes a time difference by the number of days in TLE
+    timediff = dt.timedelta(days-1);
     #adds the objects
-    final= dt + timediff;
+    final= dat + timediff;
     # might be off by 1 day
-    return str(final)
+    return final
 
 def curday():
-    return datetime.datetime.utcnow();
+    return dt.datetime.utcnow();
 
 # output is the JD of the epoch
 def ep2JD(epoch):

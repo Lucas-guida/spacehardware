@@ -42,6 +42,7 @@ equation
    v_sat_p.y = dy;
    v_sat_p.z = 0;
 end Satellite;
+
 model GndStn
   parameter Real longitude = 20 "Station longitude (deg)";
   parameter Real latitude = 30 "Station latitude (deg)";

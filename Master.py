@@ -55,16 +55,20 @@ for i in range(0,int(numSat),1):
     
 #Start OM connection
 # now we use this information to generate the LOS times
+stepSize=60;
+times = [['']*int(duration/stepSize) for i in range(int(numSat))];
+xs = [['']*int(duration/stepSize) for i in range(int(numSat))];
+ys = [['']*int(duration/stepSize) for i in range(int(numSat))];
+
 mod = ModelicaSystem("C:/Users/Lucas/Desktop/trackingARO/Sattraj.mo", "Sattraj.Satellite","Modelica.Constants")
-#for i in range(0,int(numSat)):
-i=1;
-mod.setParameters(M0=TLEData[i].meanan, N0=TLEData[i].meanmo, ecc=TLEData[i].eccn, Ndot2=TLEData[i].ndot, Nddot6=0, tstart=delta_tstart[i])
-print(mod.getParameters())
-mod.setSimulationOptions(stopTime=duration, stepSize=60.)
-mod.setSimulationOptions(startTime=0.)
-mod.simulate()
-print(mod.getSolutions())
-(time,x,y)=mod.getSolutions("time","x","y")
+for i in range(0,int(numSat)):
+    mod.setParameters(M0=TLEData[i].meanan, N0=TLEData[i].meanmo, ecc=TLEData[i].eccn, Ndot2=TLEData[i].ndot, Nddot6=0, tstart=delta_tstart[i])
+    #print(mod.getParameters())
+    mod.setSimulationOptions(stopTime=duration, stepSize=stepSize)
+    mod.setSimulationOptions(startTime=0.)
+    mod.simulate()
+    #print(mod.getSolutions())
+    (times[i],xs[i],ys[i])=mod.getSolutions("time","x","y")
 #times = initalize array of durations // # of seconds each sat is avaiable during interval
 
 

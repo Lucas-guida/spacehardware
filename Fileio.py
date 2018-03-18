@@ -89,7 +89,7 @@ def ReadNoradTLE(line0,line1,line2):
     
     incl = line2[9:16];
     raan = line2[17:25];
-    eccn = line2[26:33];
+    eccn = '0.' + line2[26:33];
     argper = line2[34:42];
     meanan = line2[43:51];
     meanmo = line2[52:62];    

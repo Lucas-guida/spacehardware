@@ -43,6 +43,19 @@ equation
    v_sat_p.z = 0;
 end Satellite;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 model GndStn
   parameter Real longitude = 20 "Station longitude (deg)";
   parameter Real latitude = 30 "Station latitude (deg)";
@@ -175,13 +188,14 @@ function range_ECF2topo
 protected
   Real p[3,1];
   Real v[3,1];
+  Real pi = 3.141592653589793;
   Real long = longitude*pi/180; //convert to radians
   Real lat = latitude*pi/180; //convert to radians
   Real R[3,3] = [-sin(long), cos(long), 0; -cos(long)*sin(lat), -sin(long)*cos(lat), cos(lat); cos(long)*cos(lat), sin(long)*cos(lat), sin(lat)];
 
 algorithm
   // p_topo = R*p_ecf - T; T = R*stn_coords
-  p := R * [p_sat_ecf.x; p_sat_ecf.y; p_sat_ecf.z] - R * [p_stn_ecf.x; p_stn_ecf.y; p_stn_ecf.z];
+  p := R * [p_sat_ecf.x; p_sat_ecf.y; p_sat_ecf.z] - R * [p_stn_ecf.x/1000; p_stn_ecf.y/1000; p_stn_ecf.z/1000];
   v := R * [v_sat_ecf.x; v_sat_ecf.y; v_sat_ecf.z] ; //v_topo = R*v_ecf
   p_sat_topo.x := p[1,1];
   p_sat_topo.y := p[2,1];
@@ -191,4 +205,32 @@ algorithm
   v_sat_topo.z := v[3,1];
 
 end range_ECF2topo;
+
+model Master
+  parameter Real raan2= 1;
+  parameter Real inc2 = 2;
+  parameter Real argper2 =3;
+  parameter Real din2 =2458192.906171;
+  parameter Real tm2 =2458192.5;
+  parameter Real az_vel_lim2 =6;
+  parameter Real el_vel_lim2 =7;
+  Satellite GPS;
+  GndStn ARO;
+public
+  Vector p;
+  Vector v;
+  Vector p2;
+  Vector v2;
+  Vector p3;
+  Vector v3;
+  output Real theta2,azimuth2,elevation2,dAz2,dEl2;
+equation
+  (p,v) = sat_ECI(GPS.p_sat_p,GPS.v_sat_p,GPS.ecc,raan2,inc2,argper2,GPS.N0);
+  theta2 = theta_t(din2,tm2);
+  (p2,v2) = sat_ECF(p,v,theta2);
+  (p3,v3) = range_ECF2topo(p2,v2,ARO.p_stn_ecf,ARO.longitude, ARO.latitude);
+  (azimuth2,elevation2,dAz2,dEl2) = range_topo2look_angles(az_vel_lim2,el_vel_lim2,p,v);
+end Master;
+
+
 end Sattraj;

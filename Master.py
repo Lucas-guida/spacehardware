@@ -17,19 +17,28 @@ root.withdraw()
 Station_fp = filedialog.askopenfilename(title = "Select the file containing station parameters");
 TLE_fp = filedialog.askopenfilename(title = "Select latest NORAD TLE");
 #get start and stop times from user
-start_time = input("Please enter the start time of your tracking period in YYYY/MM/DD HH:MM:SS\n");
+start_time = input("Please enter the start time of your tracking period in YYYY/MM/DD HH:MM:SS.SSS\n");
 duration = input("Please enter the duration of your tracking period in min.\n");
 
 duration = np.float(duration)*60; #conversion to seconds for OM Simulation time
-strt = dt.datetime.strptime(start_time,'%Y/%m/%d %X');
-
+strt = dt.datetime.strptime(start_time[:19],'%Y/%m/%d %H:%M:%S');
+mills = int(float(start_time[19:])*1000);
+strt.replace(microsecond=mills)
 # read station file with station params
 Station = ReadStationFile(Station_fp);
-print("The station file was successfully read...\n");
+print("The station file was successfully read...");
 # create database of TLE's for all satellites
 tlefile = open(TLE_fp, 'r');
 print("The TLE file was successfully read...\n");
-
+# comody
+print("  ___          _         ___     ")
+print(" |   |        |_|       |   |  ")
+print(" |___|         ___      |___| ")
+print("\  |  /        | |    \ \ |   ")
+print(" \_|_/         | |     \_\|   ")
+print("  _|_           |        _|    ")
+print(" | | |          |      _/  \_   ")
+print("_|   |_         |            |\n")
 numSat = sum(1 for line in tlefile)/3;
 tlefile.close();
 
@@ -56,27 +65,31 @@ for i in range(0,int(numSat),1):
 #Start OM connection
 # now we use this information to generate the LOS times
 stepSize=60;
+"""
 times = [['']*int(duration/stepSize) for i in range(int(numSat))];
 xs = [['']*int(duration/stepSize) for i in range(int(numSat))];
 ys = [['']*int(duration/stepSize) for i in range(int(numSat))];
-
-mod = ModelicaSystem("C:/Users/Lucas/Desktop/trackingARO/Sattraj.mo", "Sattraj.Satellite","Modelica.Constants")
-for i in range(0,int(numSat)):
-    mod.setParameters(M0=TLEData[i].meanan, N0=TLEData[i].meanmo, ecc=TLEData[i].eccn, Ndot2=TLEData[i].ndot, Nddot6=0, tstart=delta_tstart[i])
-    #print(mod.getParameters())
-    mod.setSimulationOptions(stopTime=duration, stepSize=stepSize)
-    mod.setSimulationOptions(startTime=0.)
-    mod.simulate()
-    #print(mod.getSolutions())
-    (times[i],xs[i],ys[i])=mod.getSolutions("time","x","y")
+zs = [['']*int(duration/stepSize) for i in range(int(numSat))];
+"""
+mod = ModelicaSystem('./Sattraj.mo', "Sattraj.Master","Modelica.Constants")
+#for i in range(0,int(numSat)):
+i = 0;
+# function paramaters // need to add din and tm
+print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+print('Displaying satellite: '+ TLEData[i].name)
+print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n")
+mod.setParameters(raan2=TLEData[i].raan, inc2=TLEData[i].incl, argper2=TLEData[i].argper, az_vel_lim2 = Station.az_el_nlim, el_vel_lim2=Station.az_el_nlim )
+mod.setParameters(**{"GPS.M0":TLEData[i].meanan, "GPS.N0":TLEData[i].meanmo, "GPS.ecc":TLEData[i].eccn, "GPS.Ndot2":TLEData[i].ndot, "GPS.Nddot6":0, "GPS.tstart":delta_tstart[i]})
+mod.setParameters(**{'ARO.elevation':Station.stnalt, 'ARO.latitude':Station.stnlat, 'ARO.longitude': Station.stnlong})
+print("\nDisplaying the set parameters")
+print("---------------------------------------------------")
+print(mod.getParameters())
+print('\n Simulating please wait\n')
+mod.setSimulationOptions(stopTime=duration, stepSize=stepSize)
+mod.setSimulationOptions(startTime=0.)
+mod.simulate()
+print('Displaying the set of ouputs')
+print("---------------------------------------------------")
+print(mod.getSolutions())
+(times,xs,ys,zs)=mod.getSolutions("time","p3.x","p3.y","p3.z")
 #times = initalize array of durations // # of seconds each sat is avaiable during interval
-
-
-'''
-for sat i in TLEData
-    get time from epoch to start of tracking time
-    pass TLE data into satelite model in OM
-    run it through ECI -> ECF -> look angles
-    get array back that would have look angles for the duration with 1e60 when it cant find it
-    determine durations 
-'''

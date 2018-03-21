@@ -92,7 +92,7 @@ def ReadNoradTLE(line0,line1,line2):
     eccn = '0.' + line2[26:33];
     argper = line2[34:42];
     meanan = line2[43:51];
-    meanmo = line2[52:62];    
+    meanmo = line2[52:69];    
         
     Satellite = SatelliteSet(name,refepoch,incl,raan,eccn,argper,meanan,meanmo\
                              ,ndot,nddot6,bstar,orbitnum);

@@ -22,8 +22,8 @@ duration = input("Please enter the duration of your tracking period in min.\n");
 
 duration = np.float(duration)*60; #conversion to seconds for OM Simulation time
 strt = dt.datetime.strptime(start_time[:19],'%Y/%m/%d %H:%M:%S');
-mills = int(float(start_time[19:])*1000);
-dat = dt.timedelta(milliseconds=mills);
+mills = int(float(start_time[19:])*1000*1000);
+dat = dt.timedelta(microseconds=mills);
 strt=strt+dat;
 # read station file with station params
 Station = ReadStationFile(Station_fp);

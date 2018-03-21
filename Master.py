@@ -17,13 +17,14 @@ root.withdraw()
 Station_fp = filedialog.askopenfilename(title = "Select the file containing station parameters");
 TLE_fp = filedialog.askopenfilename(title = "Select latest NORAD TLE");
 #get start and stop times from user
-start_time = input("Please enter the start time of your tracking period in YYYY/MM/DD HH:MM:SS.SSS\n");
+start_time = input("Please enter the start time of your tracking period in YYYY/MM/DD HH:MM:SS.SSSSSS\n");
 duration = input("Please enter the duration of your tracking period in min.\n");
 
 duration = np.float(duration)*60; #conversion to seconds for OM Simulation time
 strt = dt.datetime.strptime(start_time[:19],'%Y/%m/%d %H:%M:%S');
 mills = int(float(start_time[19:])*1000);
-strt.replace(microsecond=mills)
+dat = dt.timedelta(milliseconds=mills);
+strt=strt+dat;
 # read station file with station params
 Station = ReadStationFile(Station_fp);
 print("The station file was successfully read...");
@@ -57,10 +58,11 @@ for i in range(0,int(numSat)):
 
 #find delta t from epoch to tstart 
 delta_tstart = [0]*(int(numSat));
-for i in range(0,int(numSat),1):
-    curr_sat = TLEData[i];
-    curr_epoch = ep2dat(curr_sat.refepoch);
-    delta_tstart[i] = (strt - curr_epoch).total_seconds();
+#for i in range(0,int(numSat),1):
+i = 0  
+curr_sat = TLEData[i];
+curr_epoch = ep2dat(curr_sat.refepoch);
+delta_tstart[i] = (strt - curr_epoch).total_seconds();
     
 #Start OM connection
 # now we use this information to generate the LOS times

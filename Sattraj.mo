@@ -18,7 +18,7 @@ public
   output Vector p_sat_p;
   output Vector v_sat_p;
 initial equation
-   M = (M0 + N0*(360/86400)*tstart + 360*Ndot2*(tstart/86400)^2 + 360*(Nddot6)*(tstart/86400)^3);
+   M = (M0 + N0*(360/86400)*tstart + 360*Ndot2*(tstart/86400)^2 + 360*(Nddot6)*(tstart/86400)^3) +0.5;
 equation
    //working
    der(M) = (N0*(360/86400) + 2*360*Ndot2*((time)/86400^2) + 3*360*(Nddot6)*((time^2)/86400^3));
@@ -42,6 +42,15 @@ equation
    v_sat_p.y = dy;
    v_sat_p.z = 0;
 end Satellite;
+
+
+
+
+
+
+
+
+
 
 
 

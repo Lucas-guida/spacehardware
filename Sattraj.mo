@@ -65,10 +65,15 @@ end Satellite;
 
 
 
+
+
+
+
+
 model GndStn
-  parameter Real longitude = 20 "Station longitude (deg)";
-  parameter Real latitude = 30 "Station latitude (deg)";
-  parameter Real elevation = 50 "Station elevation (m)";
+  parameter Real longitude = 281.9269597222222  "Station longitude (deg)";
+  parameter Real latitude = 45.95550333333333"Station latitude (deg)";
+  parameter Real elevation = 260.42"Station elevation (m)";
   constant Real a = 6378137 "Earth reference ellipsoid equatorial radius (m)";
   constant Real f = 1/298.257223563 "Earth reference ellipsoid flattening";
   constant Real pi = 3.141592653589793;
@@ -85,7 +90,9 @@ equation
   p_stn_ecf.x = (N+elevation)*cos(lat)*cos(long);
   p_stn_ecf.y = (N+elevation)*cos(lat)*sin(long);
   p_stn_ecf.z = ((1-(2*f-f^2))*N+elevation)*sin(lat);
-end GndStn; 
+end GndStn;
+
+ 
 function theta_t
   input Real din "JD of the time of interst (not time difference since J2000)";
   //input Real t "time of interest";

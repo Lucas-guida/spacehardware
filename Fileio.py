@@ -8,6 +8,7 @@ def Banner():
     print ("---------------------------------------------------")
     return;
     
+    
 # ERRMSG()
 # This function will display an error meassage to the console, and provide an auditory warning.
 def errmsg(string):
@@ -90,7 +91,7 @@ def ReadNoradTLE(line0,line1,line2):
     incl = line2[9:16];
     raan = line2[17:25];
     eccn = '0.' + line2[26:33];
-    argper = line2[34:42];
+    argper = line2[34:43];
     meanan = line2[43:51];
     meanmo = line2[52:69];    
         

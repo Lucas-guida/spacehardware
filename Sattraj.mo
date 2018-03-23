@@ -81,9 +81,10 @@ function theta_t
   input Real din "JD of the time of interst (not time difference since J2000)";
   //input Real t "time of interest";
   input Real tm "time of mindnight of day of interest";
+  input Real t "system time";
   output Real theta_t "GMST angle (deg)";
 protected
-  Real d = din - 2451545.0;
+  Real d = din+(t*86400) - 2451545.0;
  // Real d = 1879.386107;
   Real T = d/36525;
   Real theta_mid;
@@ -93,7 +94,10 @@ algorithm
   r:=1.002737909350795 + 5.9006*10^(-11)*T -5.9*10^(-15)*T^2;
   //theta_t := theta_mid + 360*r*(2453424.416366-2453423.500000)/86400;//(time of interest ... in this case start of tracking time - tmidnight of start of tracking period)
   theta_t := mod(theta_mid + 360*r*((din-tm)*86400)/86400,360);//(time of interest ... in this case start of tracking time - tmidnight of start of tracking period)
-end theta_t; 
+end theta_t;
+
+
+ 
 function sat_ECF
   input Vector p_sat_eci "Satellite position, ECI coords (km)";
   input Vector v_sat_eci "Satellite velocity, ECI coords (km/s)";
@@ -207,11 +211,11 @@ algorithm
 end range_ECF2topo;
 
 model Master
-  parameter Real raan2= 1;
-  parameter Real inc2 = 2;
-  parameter Real argper2 =3;
-  parameter Real din2 =2458192.906171;
-  parameter Real tm2 =2458192.5;
+  parameter Real raan2= 285.742;
+  parameter Real inc2 = 55.1681;
+  parameter Real argper2 =136.112;
+  parameter Real din2 =2453424.386106;
+  parameter Real tm2 =2453423.5;
   parameter Real az_vel_lim2 =6;
   parameter Real el_vel_lim2 =7;
   Satellite GPS;
@@ -226,11 +230,16 @@ public
   output Real theta2,azimuth2,elevation2,dAz2,dEl2;
 equation
   (p,v) = sat_ECI(GPS.p_sat_p,GPS.v_sat_p,GPS.ecc,raan2,inc2,argper2,GPS.N0);
-  theta2 = theta_t(din2,tm2);
+  theta2 = theta_t(din2,tm2,time);
   (p2,v2) = sat_ECF(p,v,theta2);
   (p3,v3) = range_ECF2topo(p2,v2,ARO.p_stn_ecf,ARO.longitude, ARO.latitude);
   (azimuth2,elevation2,dAz2,dEl2) = range_topo2look_angles(az_vel_lim2,el_vel_lim2,p,v);
 end Master;
+
+
+
+
+
 
 
 end Sattraj;

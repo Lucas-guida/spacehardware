@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import filedialog
 import numpy as np
 import datetime as dt
+import time
 
 from OMPython import ModelicaSystem
 
@@ -59,61 +60,49 @@ for i in range(0,int(numSat)):
 
 #find delta t from epoch to tstart 
 delta_tstart = [0]*(int(numSat));
-#for i in range(0,int(numSat),1):
-i = 0  
-curr_sat = TLEData[i];
-curr_epoch = ep2dat(curr_sat.refepoch);
-delta_tstart[i] = (strt - curr_epoch).total_seconds();
+
+
+mod = ModelicaSystem('./Sattraj.mo', "Sattraj.Master","Modelica.Constants\n")
+print("  Sat No.          Name                         AOS                          LOS                  Min. Expected Level (dBm)");
+for i in range(0,int(numSat),1):
+#i = 0  
+    curr_sat = TLEData[i];
+    curr_epoch = ep2dat(curr_sat.refepoch);
+    delta_tstart[i] = (strt - curr_epoch).total_seconds();
     
 #Start OM connection
 # now we use this information to generate the LOS times
-stepSize=60;
-""" Need this for later
-times = [['']*int(duration/stepSize) for i in range(int(numSat))];
-xs = [['']*int(duration/stepSize) for i in range(int(numSat))];
-ys = [['']*int(duration/stepSize) for i in range(int(numSat))];
-zs = [['']*int(duration/stepSize) for i in range(int(numSat))];
-"""
-JDates = ep2JD(strt);
+    stepSize=60;
+    JDates = ep2JD(strt);
 
-mod = ModelicaSystem('./Sattraj.mo', "Sattraj.Master","Modelica.Constants")
-#for i in range(0,int(numSat)):
-i = 0;
-# function paramaters // need to add din and tm
-print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-print('Displaying satellite: '+ TLEData[i].name)
-print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n")
-mod.setParameters(raan2=TLEData[i].raan, inc2=TLEData[i].incl, argper2=TLEData[i].argper, az_vel_lim2 = Station.az_el_nlim, el_vel_lim2=Station.az_el_nlim, din2=JDates[0], tm2 =JDates[1])
-mod.setParameters(**{"GPS.M0":TLEData[i].meanan, "GPS.N0":TLEData[i].meanmo, "GPS.ecc":TLEData[i].eccn, "GPS.Ndot2":TLEData[i].ndot, "GPS.Nddot6":0, "GPS.tstart":delta_tstart[i]})
-mod.setParameters(**{'ARO.elevation':Station.stnalt, 'ARO.latitude':Station.stnlat, 'ARO.longitude': Station.stnlong})
-#print("\nDisplaying the set parameters")
-#print("---------------------------------------------------")
-#print(mod.getParameters())
-print('\n Simulating please wait\n')
-mod.setSimulationOptions(stopTime=duration, stepSize=stepSize)
-mod.setSimulationOptions(startTime=0.)
-mod.simulate()
-#print('Displaying the set of ouputs')
-#print("---------------------------------------------------")
-#print(mod.getSolutions())
-(times,Az,El,dAz,dEl)=mod.getSolutions("time","azimuth2","elevation2","dAz2","dEl2");
+   
+    mod.setParameters(raan2=TLEData[i].raan, inc2=TLEData[i].incl, argper2=TLEData[i].argper, az_vel_lim2 = Station.az_el_nlim, el_vel_lim2=Station.az_el_nlim, din2=JDates[0], tm2 =JDates[1])
+    mod.setParameters(**{"GPS.M0":TLEData[i].meanan, "GPS.N0":TLEData[i].meanmo, "GPS.ecc":TLEData[i].eccn, "GPS.Ndot2":TLEData[i].ndot, "GPS.Nddot6":0, "GPS.tstart":delta_tstart[i]})
+    mod.setParameters(**{'ARO.elevation':Station.stnalt, 'ARO.latitude':Station.stnlat, 'ARO.longitude': Station.stnlong})
+    mod.setSimulationOptions(stopTime=duration, stepSize=stepSize)
+    mod.setSimulationOptions(startTime=0.)
+    mod.simulate()
+    (times,Az,El,dAz,dEl)=mod.getSolutions("time","azimuth2","elevation2","dAz2","dEl2");
 
-print("\n computing avaiablilty ...\n");
-
-start= False;
-startTime=0;
-satDuration=0;
-for i in range(0,len(times)-1):
-    if El.item(i) < float(Station.az_el_lim.elmax[0]) and El.item(i) > float(Station.az_el_lim.elmin[0]) and dAz.item(i) != 10^60 and dEl.item(i) != 10^60:
-        if start == False:
-            start = True;
-            startTime= times[i];
+    start= False;
+    startTime=0;
+    satDuration=0;
+    for j in range(0,len(times)-1):
+        if El.item(j) < float(Station.az_el_lim.elmax[0]) and El.item(j) > float(Station.az_el_lim.elmin[0]) and Az.item(j) != 10^60 and El.item(j) != 10^60:
+            if start == False:
+                start = True;
+                startTime= times[j];
+            else:
+                satDuration= satDuration + 60;
         else:
-            satDuration= satDuration + 60;
-    else:
-        if start != False:
-            break;
-       
-print('the Satallite '+ TLEData[0].name +" has a total view duration of: "+ str(satDuration));
-print("from: " + str(startTime) + " To: "+ str(startTime+satDuration));
+            if start != False:
+                break;
+    startDelta = strt + dt.timedelta(seconds=startTime);
+    endDelta = strt + dt.timedelta(seconds=startTime+satDuration);
+    
+    if satDuration==0:
+        continue;
+    
+    print("   " + '{:2d}'.format(i) + "      " + TLEData[i].name + "   " + str(startDelta) + "   " + str(endDelta));
+    time.sleep(3)
 #times = initalize array of durations // # of seconds each sat is avaiable during interval

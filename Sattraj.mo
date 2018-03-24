@@ -18,7 +18,7 @@ public
   output Vector p_sat_p;
   output Vector v_sat_p;
 initial equation
-   M = (M0 + N0*(360/86400)*tstart + 360*Ndot2*(tstart/86400)^2 + 360*(Nddot6)*(tstart/86400)^3) +0.5;
+   M = (M0 + N0*(360/86400)*tstart + 360*Ndot2*(tstart/86400)^2 + 360*(Nddot6)*(tstart/86400)^3);
 equation
    //working
    der(M) = (N0*(360/86400) + 2*360*Ndot2*((time)/86400^2) + 3*360*(Nddot6)*((time^2)/86400^3));
@@ -42,6 +42,10 @@ equation
    v_sat_p.y = dy;
    v_sat_p.z = 0;
 end Satellite;
+
+
+
+
 
 
 
@@ -215,7 +219,7 @@ protected
 
 algorithm
   // p_topo = R*p_ecf - T; T = R*stn_coords
-  p := R * [p_sat_ecf.x; p_sat_ecf.y; p_sat_ecf.z] - R * [p_stn_ecf.x/1000; p_stn_ecf.y/1000; p_stn_ecf.z/1000];
+  p := R * ([p_sat_ecf.x; p_sat_ecf.y; p_sat_ecf.z] -  [p_stn_ecf.x/1000; p_stn_ecf.y/1000; p_stn_ecf.z/1000]);
   v := R * [v_sat_ecf.x; v_sat_ecf.y; v_sat_ecf.z] ; //v_topo = R*v_ecf
   p_sat_topo.x := p[1,1];
   p_sat_topo.y := p[2,1];
@@ -225,6 +229,7 @@ algorithm
   v_sat_topo.z := v[3,1];
 
 end range_ECF2topo;
+
 
 model Master
   parameter Real raan2= 285.742;

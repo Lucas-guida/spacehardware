@@ -61,6 +61,15 @@ for i in range(0,int(numSat)):
 #find delta t from epoch to tstart 
 delta_tstart = [0]*(int(numSat));
 
+stepSize =60;
+
+times = [['']*int(duration/stepSize) for i in range(int(numSat))];
+Azarray = [['']*int(duration/stepSize) for i in range(int(numSat))];
+Elarray = [['']*int(duration/stepSize) for i in range(int(numSat))];
+dAzarray = [['']*int(duration/stepSize) for i in range(int(numSat))];
+dElarray = [['']*int(duration/stepSize) for i in range(int(numSat))];
+startTimes = ['']*int(duration/stepSize);
+startTimesIndex = ['']*int(duration/stepSize);
 
 mod = ModelicaSystem('./Sattraj.mo', "Sattraj.Master","Modelica.Constants\n")
 print("  Sat No.          Name                         AOS                          LOS                  Min. Expected Level (dBm)");
@@ -82,8 +91,13 @@ for i in range(0,int(numSat),1):
     mod.setSimulationOptions(stopTime=duration, stepSize=stepSize)
     mod.setSimulationOptions(startTime=0.)
     mod.simulate()
-    (times,Az,El,dAz,dEl)=mod.getSolutions("time","azimuth2","elevation2","dAz2","dEl2");
-
+    (times[i],Az,El,dAz,dEl)=mod.getSolutions("time","azimuth2","elevation2","dAz2","dEl2");
+    
+    Azarray[i] =Az; 
+    Elarray[i] =El; 
+    dAzarray[i] =dAz; 
+    dElarray[i] =dEl;
+    
     start= False;
     startTime=0;
     satDuration=0;
@@ -91,7 +105,9 @@ for i in range(0,int(numSat),1):
         if El.item(j) < float(Station.az_el_lim.elmax[0]) and El.item(j) > float(Station.az_el_lim.elmin[0]) and Az.item(j) != 10^60 and El.item(j) != 10^60:
             if start == False:
                 start = True;
-                startTime= times[j];
+                startTime= times[i][j];
+                startTimes[i]=startTime;
+                startTimesIndex[i]=j;
             else:
                 satDuration= satDuration + 60;
         else:
@@ -106,3 +122,14 @@ for i in range(0,int(numSat),1):
     print("   " + '{:2d}'.format(i) + "      " + TLEData[i].name + "   " + str(startDelta) + "   " + str(endDelta));
     time.sleep(3)
 #times = initalize array of durations // # of seconds each sat is avaiable during interval
+a = int(input("\n Please select a satellite by its number \n"))
+print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+print("             UTC                Az [deg]          El [deg]            Az-vel [deg/sec]           Elz-vel [deg/sec]         Range [km]         Range Rate [km/sec]   Doppler[kHz]  Level [dBm]")
+print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+UTC = strt + dt.timedelta(seconds=startTimes[a])
+azumith = Azarray[a][startTimesIndex[a]];
+elevation = Elarray[a][startTimesIndex[a]];
+dazumith = dAzarray[a][startTimesIndex[a]];
+delevation = dElarray[a][startTimesIndex[a]];
+
+print( str(UTC) +"          "+ str(azumith) +"            "+ str(elevation) +"          "+ str(dazumith) +"         "+ str(delevation))  

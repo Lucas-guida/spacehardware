@@ -104,11 +104,14 @@ def STKout(outfile,StartString,time,Coord,position,velocity):
     
     out = outfile + '.e';
     fileobj = open(out,'w');
-    header = ['stk.v.4.3\n','\n','BEGIN Ephemeris\n','\n','NumberOfEphemerisPoints   60\n','\n','ScenarioEpoch           '+StartString+'\n',
+    #Note: StartString is the scenario start time
+    #Note: Coord is the coordinate system ie. Custom Alg_Topo Facility/Algonquin
+    num_points = np.size(time);
+    header = ['stk.v.4.3\n','\n','BEGIN Ephemeris\n','\n','NumberOfEphemerisPoints   '+ str(num_points)+'\n','\n','ScenarioEpoch           '+StartString+'\n',
               'InterpolationMethod     Lagrange\n','InterpolationOrder      7\n','CentralBody             Earth\n','CoordinateSystem        '+Coord+'\n',
               '\n','EphemerisTimePosVel\n','\n'];
     fileobj.writelines(header);
-    length = time.shape[0]
+    length = position.shape[0]
     for i in range(0,length):
         curr_line = [np.array_str(time[i]).strip('[]'),' ',np.array_str(position[i]).strip('[]'),' ',np.array_str(velocity[i]).strip('[]'),'\n'];
         fileobj.writelines(curr_line);
@@ -119,5 +122,18 @@ def anyKey():
     input('press ENTER to continue...');
     return
     
+def STKpoint(outfile,time,azimuth,elevation):
     
+    out = outfile + '.sp';
+    fileobj = open(out,'w');
+    num_points = np.size(time);
+    header = ['stk.v.4.3\n','BEGIN Attitude\n','NumberOfAttitudePoints   '+ str(num_points)+'\n','Sequence 323\n',
+              'AttitudeTimeAzElAngles\n'];
+    fileobj.writelines(header);
+    length = azimuth.shape[0]
+    for i in range(0,length):
+        curr_line = [np.array_str(time[i]).strip('[]'),' ',np.array_str(azimuth[i]).strip('[]'),' ',np.array_str(elevation[i]).strip('[]'),'\n'];
+        fileobj.writelines(curr_line);
+                
+    fileobj.close;    
     

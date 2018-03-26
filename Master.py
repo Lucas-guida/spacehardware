@@ -1,6 +1,6 @@
 # Master.py- main program which calls other subfunctions
 from Datefun import doy,frcofd,ep2dat,curday,ep2JD
-from Fileio import Banner,errmsg,ReadStationFile,ReadNoradTLE,STKout,anyKey
+from Fileio import Banner,errmsg,ReadStationFile,ReadNoradTLE,STKout,anyKey,STKpoint
 import tkinter as tk
 from tkinter import filedialog
 import numpy as np
@@ -92,7 +92,6 @@ for i in range(0,int(numSat),1):
     mod.setSimulationOptions(startTime=0.)
     mod.simulate()
     (times[i],Az,El,dAz,dEl)=mod.getSolutions("time","azimuth2","elevation2","dAz2","dEl2");
-    
     Azarray[i] =Az; 
     Elarray[i] =El; 
     dAzarray[i] =dAz; 
@@ -121,6 +120,7 @@ for i in range(0,int(numSat),1):
     
     print("   " + '{:2d}'.format(i) + "      " + TLEData[i].name + "   " + str(startDelta) + "   " + str(endDelta));
     time.sleep(3)
+
 #times = initalize array of durations // # of seconds each sat is avaiable during interval
 a = int(input("\n Please select a satellite by its number \n"))
 print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
@@ -131,5 +131,5 @@ azumith = Azarray[a][startTimesIndex[a]];
 elevation = Elarray[a][startTimesIndex[a]];
 dazumith = dAzarray[a][startTimesIndex[a]];
 delevation = dElarray[a][startTimesIndex[a]];
-
+STKpoint('Pointing_Satellite_'+str(a),times[a],Azarray[a],Elarray[a]);
 print( str(UTC) +"          "+ str(azumith) +"            "+ str(elevation) +"          "+ str(dazumith) +"         "+ str(delevation))  

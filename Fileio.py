@@ -24,7 +24,6 @@ from collections import namedtuple
 """
 from tkinter import filedialog
 from tkinter import *
-
 root = Tk()
 root.filename =  filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("all files","*.*")))
 """
@@ -111,9 +110,9 @@ def STKout(outfile,StartString,time,Coord,position,velocity):
               'InterpolationMethod     Lagrange\n','InterpolationOrder      7\n','CentralBody             Earth\n','CoordinateSystem        '+Coord+'\n',
               '\n','EphemerisTimePosVel\n','\n'];
     fileobj.writelines(header);
-    length = position.shape[0]
+    length = time.shape[0]
     for i in range(0,length):
-        curr_line = [np.array_str(time[i]).strip('[]'),' ',np.array_str(position[i]).strip('[]'),' ',np.array_str(velocity[i]).strip('[]'),'\n'];
+        curr_line = [np.array_str(time[i]).strip('[]'),' ',str(position[0][i]),' ',str(position[1][i]),' ',str(position[2][i]),' ',str(velocity[0][i]),' ',str(velocity[1][i]),' ',str(velocity[2][i]),' ','\n'];
         fileobj.writelines(curr_line);
                 
     fileobj.close;
@@ -135,5 +134,4 @@ def STKpoint(outfile,time,azimuth,elevation):
         curr_line = [np.array_str(time[i]).strip('[]'),' ',np.array_str(azimuth[i]).strip('[]'),' ',np.array_str(elevation[i]).strip('[]'),'\n'];
         fileobj.writelines(curr_line);
                 
-    fileobj.close;    
-    
+    fileobj.close;  

@@ -104,7 +104,7 @@ function theta_t
   input Real t "system time";
   output Real theta_t "GMST angle (deg)";
 protected
-  Real d = din+(t*86400) - 2451545.0;
+  Real d = din+(t/86400) - 2451545.0;
  // Real d = 1879.386107;
   Real T = d/36525;
   Real theta_mid;
@@ -115,6 +115,7 @@ algorithm
   //theta_t := theta_mid + 360*r*(2453424.416366-2453423.500000)/86400;//(time of interest ... in this case start of tracking time - tmidnight of start of tracking period)
   theta_t := mod(theta_mid + 360*r*((din-tm)*86400)/86400,360);//(time of interest ... in this case start of tracking time - tmidnight of start of tracking period)
 end theta_t;
+
 
 
  
@@ -188,8 +189,8 @@ protected
   Real pi = 3.141592653589793;
   Real dAzTemp[3];
 algorithm
-  azimuth := (atan(p_sat_topo.x/p_sat_topo.y))*180/pi;
-  elevation := (atan(p_sat_topo.z/(sqrt(p_sat_topo.x^2 + p_sat_topo.y^2))))*180/pi;
+  azimuth := (atan2(p_sat_topo.x,p_sat_topo.y))*180/pi;
+  elevation := (atan2(p_sat_topo.z,(sqrt(p_sat_topo.x^2 + p_sat_topo.y^2))))*180/pi;
   dAzTemp := (1/(R^2))*cross(vxy,Rxy);
   dAz := dAzTemp[3];
   dEl := (R*v_sat_topo.z-(p_sat_topo.z/R)*(Rxy[1]*vxy[1]+Rxy[2]*vxy[2]))/(R^2);
@@ -199,6 +200,7 @@ algorithm
     elevation := 1.e+60; 
   end if;
 end range_topo2look_angles;
+
 function range_ECF2topo
   input Vector p_sat_ecf "Satellite position in ECF coords (km)";
   input Vector v_sat_ecf "Satellite velocity in ECF coords (km/s)";
@@ -254,8 +256,11 @@ equation
   theta2 = theta_t(din2,tm2,time);
   (p2,v2) = sat_ECF(p,v,theta2);
   (p3,v3) = range_ECF2topo(p2,v2,ARO.p_stn_ecf,ARO.longitude, ARO.latitude);
-  (azimuth2,elevation2,dAz2,dEl2) = range_topo2look_angles(az_vel_lim2,el_vel_lim2,p,v);
+  (azimuth2,elevation2,dAz2,dEl2) = range_topo2look_angles(az_vel_lim2,el_vel_lim2,p3,v3);
 end Master;
+
+
+
 
 
 

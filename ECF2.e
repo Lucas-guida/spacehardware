@@ -9,7 +9,7 @@ InterpolationMethod     Lagrange
 InterpolationOrder      7
 CentralBody             Earth
 CoordinateSystem        Fixed
-DistanceUnit     	Kilometers
+DistanceUnit     Kilometers
 
 EphemerisTimePosVel
 

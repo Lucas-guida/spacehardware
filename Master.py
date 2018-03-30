@@ -131,9 +131,9 @@ print("             UTC                Az [deg]          El [deg]            Az-
 print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 #UTC = strt + dt.timedelta(seconds=startTimes[a])
 UTC ="cashmeoutsidehowboutdat"
-azumith = Azarray[a][startTimesIndex[a]];
+'''azumith = Azarray[a][startTimesIndex[a]];
 elevation = Elarray[a][startTimesIndex[a]];
 dazumith = dAzarray[a][startTimesIndex[a]];
-delevation = dElarray[a][startTimesIndex[a]];
-STKpoint('Pointing_Satellite_'+str(a),times[a],Azarray[a],Elarray[a]);
-print( str(UTC) +"          "+ str(azumith) +"            "+ str(elevation) +"          "+ str(dazumith) +"         "+ str(delevation))  
+delevation = dElarray[a][startTimesIndex[a]];'''
+#STKpoint('Pointing_Satellite_'+str(a),times[a],Azarray[a],Elarray[a]);
+#print( str(UTC) +"          "+ str(azumith) +"            "+ str(elevation) +"          "+ str(dazumith) +"         "+ str(delevation))  

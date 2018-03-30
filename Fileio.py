@@ -104,11 +104,11 @@ def STKout(outfile,StartString,time,Coord,position,velocity):
     out = outfile + '.e';
     fileobj = open(out,'w');
     #Note: StartString is the scenario start time
-    #Note: Coord is the coordinate system ie. Custom Alg_Topo Facility/Algonquin
+    #Note: Coord is the coordinate system ie. Custom Algo_Topo Facility/Algonquin
     num_points = np.size(time);
     header = ['stk.v.4.3\n','\n','BEGIN Ephemeris\n','\n','NumberOfEphemerisPoints   '+ str(num_points)+'\n','\n','ScenarioEpoch           '+StartString+'\n',
               'InterpolationMethod     Lagrange\n','InterpolationOrder      7\n','CentralBody             Earth\n','CoordinateSystem        '+Coord+'\n',
-              '\n','EphemerisTimePosVel\n','\n'];
+              'DistanceUnit     Kilometers\n','\n','EphemerisTimePosVel\n','\n'];
     fileobj.writelines(header);
     length = time.shape[0]
     for i in range(0,length):

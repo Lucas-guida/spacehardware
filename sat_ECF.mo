@@ -12,7 +12,7 @@ protected
   Real theta_rad = theta_t*pi/180; // convert to radians
   Real side_time = 23*3600 + 56*60 + 4.091; // sidereal time
   Real sidereal_rot_rate = 2*pi/side_time; //sidereal rotation rate
-  Real R1[3,3] = [ cos(theta_rad),sin(theta_rad),0; -sin(theta_rad),cos(theta_rad),0; 0,0,1];
+  Real R1[3,3] = [ cos(theta_rad),-sin(theta_rad),0; sin(theta_rad),cos(theta_rad),0; 0,0,1];
   Real R2[3,3] = [ -sin(theta_rad),cos(theta_rad),0; -cos(theta_rad),-sin(theta_rad),0; 0,0,0];
 algorithm
   p := R1* [p_sat_eci.x;p_sat_eci.y;p_sat_eci.z]; // p_ecf = R1*p_eci

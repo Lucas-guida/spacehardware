@@ -124,7 +124,7 @@ for i in range(0,int(numSat),1):
     startDelta = strt + dt.timedelta(seconds=startTime);
     endDelta = strt + dt.timedelta(seconds=startTime+satDuration);
     
-    if satDuration==0
+    if satDuration==0:
         continue;
     
     print("   " + '{:2d}'.format(i) + "      " + TLEData[i].name + "   " + str(startDelta) + "   " + str(endDelta));

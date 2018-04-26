@@ -11,22 +11,29 @@ model Satellite
   parameter Real Ndot2 = 0.00000015 "TLE drag paramter rev/d^2";
   parameter Real Nddot6 = 0.0"TLE paramter rev/d^3";
   parameter Real tstart = 0 "Simulation start time,seconds since Epoch (s)";
-  parameter Real pi = 3.141592653589793;
+  parameter Real pi = 2*Modelica.Math.asin(1.0);
   parameter Real GM = 398600.4418 "km^3/s^2";
+  parameter Real argper0 "Argument of Perigee (deg)";
+  parameter Real raan0 "Right Ascension of ascending node (deg)";
+  parameter Real inc;
   Real M, E, theta, r, a, x, y, h, dr, dx, dy,n, Mean; // removed n and dM
+  Real dargper, draan;
+  constant Real J2 = 1.081874*10^(-3);
+  constant Real Re = 6378.135;
 public
   output Vector p_sat_p;
   output Vector v_sat_p;
+  output Real argper, raan;
 initial equation
    M = (M0 + N0*(360/86400)*tstart + 360*Ndot2*(tstart/86400)^2 + 360*(Nddot6)*(tstart/86400)^3);
 equation
    //working
    der(M) = (N0*(360/86400) + 2*360*Ndot2*((time)/86400^2) + 3*360*(Nddot6)*((time^2)/86400^3));
    n=der(M);
-   M*3.141592653589793/180 = E + ecc*sin(E);
+   M*pi/180 = E + ecc*sin(E);
    Mean = mod(M, 360);
    tan(E/2) = sqrt((1 - ecc)/(1 + ecc))*tan(theta/2);
-   n*3.141592653589793/180 = sqrt(GM/a^3);
+   n*pi/180 = sqrt(GM/a^3);
    r = a*(1 - ecc^2)/(1 + ecc*cos(theta));
    x = r*cos(theta);
    y = r*sin(theta);
@@ -35,6 +42,12 @@ equation
    dx = -(GM/h)*sin(theta);
    dy = (GM/h)*(ecc + cos(theta));
    
+   draan = 3*J2*Re^2*cos(inc*pi/180)/(2*a^2*(1-ecc^2)^2)*N0;
+   dargper = 3*J2*Re^2*(5*cos(inc*pi/180)^2 - 1)/(2*a^2*(1-ecc^2)^2)*N0;
+   
+   raan = raan0 + draan*(tstart + time);
+   argper = argper0 + dargper*(tstart + time);
+   
    p_sat_p.x = x;
    p_sat_p.y = y;
    p_sat_p.z = 0;
@@ -42,6 +55,25 @@ equation
    v_sat_p.y = dy;
    v_sat_p.z = 0;
 end Satellite;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -96,6 +128,9 @@ equation
   p_stn_ecf.z = ((1-(2*f-f^2))*N+elevation)*sin(lat);
 end GndStn;
 
+
+
+
  
 function theta_t
   input Real din "JD of the time of interst (not time difference since J2000)";
@@ -108,10 +143,56 @@ protected
   Real dm = tm - 2451545.0;
   Real T = d/36525;
   Real theta_mid;
+  Real GMST;
   Real r;
 algorithm
- theta_t := mod(18.697374558 + 24.06570982441908*d,24)*360/24;
+  //theta_t := mod(18.697374558 + 24.06570982441908*d,24)*360/24;
+  theta_t := mod(6.697374558 + 0.06570982441908*dm + 1.00273790935*(d-dm)*24 + 0.000026*T^2,24)*360/24;
+  
+  //theta_t:= mod(6.72000666+ 0.065721398*dm + 0.99373790935*(d-dm)*24,24)*360/24;
+
+  //The below is trash
+  //GMST := mod(24110.5484 + 864014.0*T +0.093104*T^2 -(6.2*10^(-6))*T^3,86400);
+  //theta_mid:=360*GMST/86400;
+  //r:=1.002737909350795+ (5.9006*10^(-11))*T -(5.9*10^(-15))*T^2;
+  //theta_t:= theta_mid +360*r*(d-dm)*86400;
+ 
 end theta_t;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -157,8 +238,8 @@ function sat_ECI
   output Vector v_sat_eci "Satellite velocity ECI coords (km)";
 protected
   Real pi = 3.141592653589793;
-  Real w = argper*pi/180;
-  Real r = raan*pi/180;
+  Real w = (argper)*pi/180;
+  Real r = (raan)*pi/180;
   Real i = inc*pi/180;
   Real pTemp[3,1];
   Real vTemp[3,1];
@@ -173,6 +254,12 @@ algorithm
   v_sat_eci.y := vTemp[2,1];
   v_sat_eci.z := vTemp[3,1];
 end sat_ECI;
+
+
+
+
+
+
 function range_topo2look_angles
   input Real az_vel_lim "Azimuth velocity limit (deg/s)";
   input Real el_vel_lim "Elevation velocity limit (deg/s)";
@@ -234,9 +321,9 @@ end range_ECF2topo;
 
 
 model Master
-  parameter Real raan2= 285.742;
-  parameter Real inc2 = 55.1681;
-  parameter Real argper2 =136.112;
+//  parameter Real raan2= 285.742;
+//  parameter Real inc2 = 55.1681;
+//  parameter Real argper2 =136.112;
   parameter Real din2 =2453424.386106;
   parameter Real tm2 =2453423.5;
   parameter Real az_vel_lim2 =6;
@@ -252,12 +339,14 @@ public
   Vector v3;
   output Real theta2,azimuth2,elevation2,dAz2,dEl2;
 equation
-  (p,v) = sat_ECI(GPS.p_sat_p,GPS.v_sat_p,GPS.ecc,raan2,inc2,argper2,GPS.N0);
+  (p,v) = sat_ECI(GPS.p_sat_p,GPS.v_sat_p,GPS.ecc,GPS.raan,GPS.inc,GPS.argper,GPS.N0);
   theta2 = theta_t(din2,tm2,time);
   (p2,v2) = sat_ECF(p,v,theta2);
   (p3,v3) = range_ECF2topo(p2,v2,ARO.p_stn_ecf,ARO.longitude, ARO.latitude);
   (azimuth2,elevation2,dAz2,dEl2) = range_topo2look_angles(az_vel_lim2,el_vel_lim2,p3,v3);
 end Master;
+
+
 
 
 

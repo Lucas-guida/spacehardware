@@ -1,17 +1,17 @@
 import math
 
-def minLB(Az, el,x,y,z):
+def minLB(Az, el,x,y,z,f,D,EIRP):
     
     r= math.sqrt(x*x + y*y + z*z)
     
-    f = 1.57542
-    D = 46
+    #f = 1.57542
+    #D = 46
     n = 0.5
     c =2.99*10**8 
     #Hwo = 2.1
     
     
-    EIRP = 8.3988 # 3dBW
+    #EIRP = 8.3988 # 3dBW
     
     Gr = 10*math.log10(math.pi**2*(f*10**9)**2*D**2*n/c**2) 
     Ls = 10*math.log10((c/(4*math.pi*r*1000*f*10**9))**2)

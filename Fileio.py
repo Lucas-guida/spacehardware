@@ -1,3 +1,6 @@
+import datetime as dt
+import math
+
 def Banner():
     print ("---------------------------------------------------")
     print ("ENG4350: Lucas Santaguida and Mohammed Kagalwala")
@@ -135,3 +138,35 @@ def STKpoint(outfile,time,azimuth,elevation):
         fileobj.writelines(curr_line);
                 
     fileobj.close;  
+
+def CompFile(name,utc , a, da, e, de):
+    fileobj = open("compFile.txt",'w')
+    header = ['# Any comment and/or Header\n','# Station: Station Name Tracking Orbit for the '+name+'\n','#--------------------------------------------------------------------------------------------------\n',
+              '# UTC Date/Time      Azimuth and  AZ_Velocity   Elevation and EL_Velocity\n'];
+    fileobj.writelines(header);   
+     
+    y = utc.year;
+    d = utc - dt.datetime(y,1,1)
+    hr= math.floor(d.seconds/60/60)
+    mins = math.floor((d.seconds - math.floor(d.seconds/60/60)*60*60)/60)
+    
+    if a<0:
+        azh = math.ceil(a)
+        azm = math.ceil((a-azh)*60)
+        azs = round((a-(azh+azm/60))*60*60,1)
+    else:
+        azh = math.floor(a)
+        azm = math.floor((a-azh)*60)
+        azs = round((a-(azh+azm/60))*60*60,1)
+        
+    if e<0:
+        ezh = math.ceil(e)
+        ezm = math.ceil((e-ezh)*60)
+        ezs = round((e-(ezh+ezm/60))*60*60,1)
+    else:
+        ezh = math.floor(e)
+        ezm = math.floor((e-ezh)*60)
+        ezs = round((e-(ezh+ezm/60))*60*60,1)
+        
+    line = str(y) + '. '+ str(d.days +1) + '.'+ str(hr) + '.' + str(mins)+'.'+str(d.seconds -hr*60*60 - mins*60) + ' ' + str(azh) + ' ' + str(azm) + ' ' + str(azs) + ' ' + str(round(da,1)) +' '+ str(ezh) + ' ' + str(ezm) + ' ' + str(ezs)+ ' ' + str(round(de,1))
+    fileobj.write(line)

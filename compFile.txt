@@ -1,5 +1,5 @@
 # Any comment and/or Header
-# Station: Station Name Tracking Orbit for the GPS BII-09  (PRN 15)   
+# Station: Station Name Tracking Orbit for the GPS BIIR-2  (PRN 13)   
 #--------------------------------------------------------------------------------------------------
 # UTC Date/Time      Azimuth and  AZ_Velocity   Elevation and EL_Velocity
-2005. 53.22.57.59 -54 -26 -54.6 0.0 9 10 5.8 0.0
+2018. 118.3.6.30 162 29 23.0 -0.0 9 18 55.8 0.0

@@ -126,12 +126,18 @@ for i in range(0,int(numSat),1):
     ##################################################################################################################
     #Computing the AOS AND LOS
     ##################################################################################################################
+    n = len(times[i])-1
+    (x,y,z)=mod.getSolutions("p3.x","p3.y","p3.z")
+    xf=x[n]
+    yf=y[n]
+    zf=z[n]
+    Azf=Az.item(n)
+    Elf=El.item(n)
     for j in range(0,len(times[i])-1):
         if El.item(j) < float(Station.az_el_lim.elmax[0]) and El.item(j) > float(Station.az_el_lim.elmin[0]) and Az.item(j) != 10^60 and El.item(j) != 10^60:
             if start == False:
                 start = True;
                 
-                (x,y,z)=mod.getSolutions("p3.x","p3.y","p3.z")
                 xs=x[j]
                 ys=y[j]
                 zs=z[j]
@@ -153,6 +159,7 @@ for i in range(0,int(numSat),1):
                 Azf=Az.item(j)
                 Elf=El.item(j)
                 break;
+        
     startDelta = strt + dt.timedelta(seconds=startTime);
     endDelta = strt + dt.timedelta(seconds=startTime+satDuration);
     

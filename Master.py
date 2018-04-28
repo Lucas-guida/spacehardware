@@ -119,12 +119,6 @@ for i in range(0,int(numSat),1):
     Elarray[i] =El; 
     dAzarray[i] =dAz; 
     dElarray[i] =dEl;
-    
-    if i == 3:
-        Azarrayasd =Az; 
-        Elarrayasd =El; 
-        dAzarrayasd =dAz; 
-        dElarrayasd =dEl;
         
     start= False;
     startTime=0;

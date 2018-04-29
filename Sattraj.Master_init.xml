@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fmiModelDescription OPENMODELICAHOME="C:/OpenModelica1.12.0-64bit/" cmt_numberOfBooleanAlgebraicVariables="NYBOOL:   number of alg. bool variables,                      OMC" cmt_numberOfBooleanAliasVariables="NABOOL:   number of alias bool variables,                     OMC" cmt_numberOfBooleanParameters="NPBOOL:   number of bool parameters,                          OMC" cmt_numberOfContinuousStates="NX:       number of states,                                   FMI" cmt_numberOfEventIndicators="NG:       number of zero crossings,                           FMI" cmt_numberOfExternalObjects="NEXT:     number of external objects,                         OMC" cmt_numberOfFunctions="NFUNC:    number of functions used by the simulation,         OMC" cmt_numberOfInputVariables="NI:       number of inputvar on topmodel,                     OMC" cmt_numberOfIntegerAlgebraicVariables="NYINT:    number of alg. int variables,                       OMC" cmt_numberOfIntegerAliasVariables="NAINT:    number of alias int variables,                      OMC" cmt_numberOfIntegerParameters="NPINT:    number of int parameters,                           OMC" cmt_numberOfOutputVariables="NO:       number of outputvar on topmodel,                    OMC" cmt_numberOfRealAlgebraicAliasVariables="NA:       number of alias variables,                          OMC" cmt_numberOfRealAlgebraicVariables="NY:       number of real variables,                           OMC" cmt_numberOfRealParameters="NP:       number of parameters,                               OMC" cmt_numberOfStringAlgebraicVariables="NYSTR:    number of alg. string variables,                    OMC" cmt_numberOfStringAliasVariables="NASTR:    number of alias string variables,                   OMC" cmt_numberOfStringParameters="NPSTR:    number of string parameters,                        OMC" cmt_numberOfTimeEvents="NG_SAM:   number of zero crossings that are samples,          OMC" description="" fmiVersion="1.0" generationDateAndTime="2018-04-29T13:47:44Z" generationTool="OpenModelica Compiler v1.12.0 (64-bit)" guid="{d0a8df99-f14a-474d-9e50-11bfe47e05b7}" modelIdentifier="Sattraj_Master" modelName="Sattraj.Master" numberOfBooleanAlgebraicVariables="0" numberOfBooleanAliasVariables="0" numberOfBooleanParameters="0" numberOfContinuousStates="1" numberOfEventIndicators="1" numberOfExternalObjects="0" numberOfFunctions="6" numberOfInputVariables="0" numberOfIntegerAlgebraicVariables="0" numberOfIntegerAliasVariables="0" numberOfIntegerParameters="0" numberOfOutputVariables="5" numberOfRealAlgebraicAliasVariables="7" numberOfRealAlgebraicVariables="64" numberOfRealParameters="18" numberOfStringAlgebraicVariables="0" numberOfStringAliasVariables="0" numberOfStringParameters="0" numberOfTimeEvents="0" variableNamingConvention="structured">
+
+
+  
+  <DefaultExperiment outputFormat="mat" solver="dassl" startTime="0.0" stepSize="60" stopTime="60000.0" tolerance="1e-006" variableFilter=".*" />
+
+  
+  <ModelVariables>
+
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="0" classType="rSta" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="true" name="GPS.M" startColumn="3" startLine="19" valueReference="1000" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="0" classType="rDer" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="der(GPS.M)" startColumn="3" startLine="19" valueReference="1001" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="none" classIndex="0" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="true" isValueChangeable="false" name="$TMP$VAR$18$0ATAN$TAN" startColumn="0" startLine="0" valueReference="1002" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="none" classIndex="1" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="true" isValueChangeable="false" name="$TMP$VAR$18$0PREX$TAN" startColumn="0" startLine="0" valueReference="1003" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="none" classIndex="2" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="true" isValueChangeable="false" name="$TMP$VAR$18$0Y$TAN" startColumn="0" startLine="0" valueReference="1004" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="none" classIndex="3" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="true" isValueChangeable="false" name="$TMP$VAR$25$0X$ABS" startColumn="0" startLine="0" valueReference="1005" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="none" classIndex="4" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="true" isValueChangeable="false" name="$TMP$VAR$50$0ATAN$TAN" startColumn="0" startLine="0" valueReference="1006" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="none" classIndex="5" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="true" isValueChangeable="false" name="$TMP$VAR$50$0PREX$TAN" startColumn="0" startLine="0" valueReference="1007" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="none" classIndex="6" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="true" isValueChangeable="false" name="$TMP$VAR$61$0X$ABS" startColumn="0" startLine="0" valueReference="1008" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="7" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse10" startColumn="0" startLine="0" valueReference="1009" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="8" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse11" startColumn="0" startLine="0" valueReference="1010" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="9" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse12" startColumn="0" startLine="0" valueReference="1011" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="10" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse3" startColumn="0" startLine="0" valueReference="1012" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="11" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse4" startColumn="0" startLine="0" valueReference="1013" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="12" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse5" startColumn="0" startLine="0" valueReference="1014" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="13" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse6" startColumn="0" startLine="0" valueReference="1015" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="14" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse7" startColumn="0" startLine="0" valueReference="1016" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="15" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse8" startColumn="0" startLine="0" valueReference="1017" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="16" classType="rAlg" endColumn="0" endLine="0" fileName="" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="$cse9" startColumn="0" startLine="0" valueReference="1018" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="17" classType="rAlg" endColumn="29" endLine="117" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.N" startColumn="3" startLine="117" valueReference="1019" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="18" classType="rAlg" endColumn="29" endLine="117" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.lat" startColumn="3" startLine="117" valueReference="1020" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="19" classType="rAlg" endColumn="29" endLine="117" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.long" startColumn="3" startLine="117" valueReference="1021" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="20" classType="rAlg" endColumn="29" endLine="117" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.x" startColumn="3" startLine="117" valueReference="1022" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="21" classType="rAlg" endColumn="29" endLine="117" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.y" startColumn="3" startLine="117" valueReference="1023" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="22" classType="rAlg" endColumn="29" endLine="117" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.z" startColumn="3" startLine="117" valueReference="1024" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="23" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.E" startColumn="3" startLine="19" valueReference="1025" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="24" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.Mean" startColumn="3" startLine="19" valueReference="1026" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="25" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.a" startColumn="3" startLine="19" valueReference="1027" variability="continuous">
+    <Real fixed="false" start="26559.36902972547" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="26" classType="rAlg" endColumn="27" endLine="26" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.argper" startColumn="3" startLine="26" valueReference="1028" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="27" classType="rAlg" endColumn="22" endLine="20" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.dargper" startColumn="3" startLine="20" valueReference="1029" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="28" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.dr" startColumn="3" startLine="19" valueReference="1030" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="29" classType="rAlg" endColumn="22" endLine="20" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.draan" startColumn="3" startLine="20" valueReference="1031" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="30" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.dx" startColumn="3" startLine="19" valueReference="1032" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="31" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.dy" startColumn="3" startLine="19" valueReference="1033" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="32" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.h" startColumn="3" startLine="19" valueReference="1034" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="33" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.n" startColumn="3" startLine="19" valueReference="1035" variability="continuous">
+    <Real fixed="false" start="0.008357278796072001" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="34" classType="rAlg" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.p_sat_p.z" startColumn="3" startLine="5" valueReference="1036" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="35" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.r" startColumn="3" startLine="19" valueReference="1037" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="36" classType="rAlg" endColumn="27" endLine="26" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.raan" startColumn="3" startLine="26" valueReference="1038" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="37" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.theta" startColumn="3" startLine="19" valueReference="1039" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="38" classType="rAlg" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.v_sat_p.z" startColumn="3" startLine="5" valueReference="1040" variability="continuous">
+    <Real fixed="true" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="39" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.x" startColumn="3" startLine="19" valueReference="1041" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="40" classType="rAlg" endColumn="54" endLine="19" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.y" startColumn="3" startLine="19" valueReference="1042" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="output" classIndex="41" classType="rAlg" endColumn="51" endLine="389" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="azimuth2" startColumn="3" startLine="389" valueReference="1043" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="output" classIndex="42" classType="rAlg" endColumn="51" endLine="389" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="dAz2" startColumn="3" startLine="389" valueReference="1044" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="output" classIndex="43" classType="rAlg" endColumn="51" endLine="389" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="dEl2" startColumn="3" startLine="389" valueReference="1045" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="output" classIndex="44" classType="rAlg" endColumn="51" endLine="389" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="elevation2" startColumn="3" startLine="389" valueReference="1046" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="45" classType="rAlg" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p.x" startColumn="3" startLine="3" valueReference="1047" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="46" classType="rAlg" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p.y" startColumn="3" startLine="4" valueReference="1048" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="47" classType="rAlg" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p.z" startColumn="3" startLine="5" valueReference="1049" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="48" classType="rAlg" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p2.x" startColumn="3" startLine="3" valueReference="1050" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="49" classType="rAlg" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p2.y" startColumn="3" startLine="4" valueReference="1051" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="50" classType="rAlg" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p2.z" startColumn="3" startLine="5" valueReference="1052" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="51" classType="rAlg" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p3.x" startColumn="3" startLine="3" valueReference="1053" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="52" classType="rAlg" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p3.y" startColumn="3" startLine="4" valueReference="1054" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="53" classType="rAlg" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="p3.z" startColumn="3" startLine="5" valueReference="1055" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="output" classIndex="54" classType="rAlg" endColumn="51" endLine="389" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="theta2" startColumn="3" startLine="389" valueReference="1056" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="55" classType="rAlg" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v.x" startColumn="3" startLine="3" valueReference="1057" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="56" classType="rAlg" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v.y" startColumn="3" startLine="4" valueReference="1058" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="57" classType="rAlg" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v.z" startColumn="3" startLine="5" valueReference="1059" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="58" classType="rAlg" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v2.x" startColumn="3" startLine="3" valueReference="1060" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="59" classType="rAlg" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v2.y" startColumn="3" startLine="4" valueReference="1061" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="60" classType="rAlg" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v2.z" startColumn="3" startLine="5" valueReference="1062" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="61" classType="rAlg" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v3.x" startColumn="3" startLine="3" valueReference="1063" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="62" classType="rAlg" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v3.y" startColumn="3" startLine="4" valueReference="1064" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="63" classType="rAlg" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="v3.z" startColumn="3" startLine="5" valueReference="1065" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="0" classType="rPar" description="Station elevation (m)" endColumn="59" endLine="113" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="ARO.elevation" startColumn="3" startLine="113" valueReference="1066" variability="parameter">
+    <Real fixed="true" start="260.42" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="1" classType="rPar" description="Station latitude (deg)" endColumn="70" endLine="112" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="ARO.latitude" startColumn="3" startLine="112" valueReference="1067" variability="parameter">
+    <Real fixed="true" start="45.95550333333333" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="2" classType="rPar" description="Station longitude (deg)" endColumn="74" endLine="111" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="ARO.longitude" startColumn="3" startLine="111" valueReference="1068" variability="parameter">
+    <Real fixed="true" start="281.9269597222222" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="3" classType="rPar" description="km^3/s^2" endColumn="45" endLine="15" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.GM" startColumn="3" startLine="15" valueReference="1069" variability="parameter">
+    <Real fixed="true" start="398600.4418" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="4" classType="rPar" description="Mean anomaly at epoch (deg)" endColumn="61" endLine="9" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.M0" startColumn="3" startLine="9" valueReference="1070" variability="parameter">
+    <Real fixed="true" start="62.3115" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="5" classType="rPar" description="Mean motion at Epoch (rev/d)" endColumn="70" endLine="10" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.N0" startColumn="3" startLine="10" valueReference="1071" variability="parameter">
+    <Real fixed="true" start="2.00564507" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="6" classType="rPar" description="TLE paramter rev/d^3" endColumn="52" endLine="12" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.Nddot6" startColumn="3" startLine="12" valueReference="1072" variability="parameter">
+    <Real fixed="true" start="0.0" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="7" classType="rPar" description="TLE drag paramter rev/d^2" endColumn="64" endLine="11" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.Ndot2" startColumn="3" startLine="11" valueReference="1073" variability="parameter">
+    <Real fixed="true" start="2.6e-07" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="8" classType="rPar" description="Argument of Perigee (deg)" endColumn="53" endLine="16" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.argper0" startColumn="3" startLine="16" valueReference="1074" variability="parameter">
+    <Real fixed="true" start="74.2196" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="9" classType="rPar" description="Eccentriciy" endColumn="47" endLine="8" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.ecc" startColumn="3" startLine="8" valueReference="1075" variability="parameter">
+    <Real fixed="true" start="0.0142136" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="10" classType="rPar" endColumn="21" endLine="18" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.inc" startColumn="3" startLine="18" valueReference="1076" variability="parameter">
+    <Real fixed="true" start="54.3945" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="11" classType="rPar" endColumn="48" endLine="14" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.pi" startColumn="3" startLine="14" valueReference="1077" variability="parameter">
+    <Real fixed="true" start="3.141592653589793" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="12" classType="rPar" description="Right Ascension of ascending node (deg)" endColumn="65" endLine="17" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.raan0" startColumn="3" startLine="17" valueReference="1078" variability="parameter">
+    <Real fixed="true" start="85.5648" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="13" classType="rPar" description="Simulation start time,seconds since Epoch (s)" endColumn="76" endLine="13" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="GPS.tstart" startColumn="3" startLine="13" valueReference="1079" variability="parameter">
+    <Real fixed="true" start="0.09856" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="14" classType="rPar" endColumn="32" endLine="378" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="az_vel_lim2" startColumn="3" startLine="378" valueReference="1080" variability="parameter">
+    <Real fixed="true" start="1.0" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="15" classType="rPar" endColumn="38" endLine="376" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="din2" startColumn="3" startLine="376" valueReference="1081" variability="parameter">
+    <Real fixed="true" start="2458236.476005741" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="16" classType="rPar" endColumn="32" endLine="379" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="el_vel_lim2" startColumn="3" startLine="379" valueReference="1082" variability="parameter">
+    <Real fixed="true" start="1.0" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="noAlias" causality="internal" classIndex="17" classType="rPar" endColumn="32" endLine="377" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="true" isProtected="false" isValueChangeable="true" name="tm2" startColumn="3" startLine="377" valueReference="1083" variability="parameter">
+    <Real fixed="true" start="2458235.5" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="alias" aliasVariable="ARO.x" causality="internal" classIndex="0" classType="rAli" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.p_stn_ecf.x" startColumn="3" startLine="3" valueReference="1084" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="alias" aliasVariable="ARO.y" causality="internal" classIndex="1" classType="rAli" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.p_stn_ecf.y" startColumn="3" startLine="4" valueReference="1085" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="alias" aliasVariable="ARO.z" causality="internal" classIndex="2" classType="rAli" endColumn="9" endLine="5" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="ARO.p_stn_ecf.z" startColumn="3" startLine="5" valueReference="1086" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="alias" aliasVariable="GPS.x" causality="internal" classIndex="3" classType="rAli" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.p_sat_p.x" startColumn="3" startLine="3" valueReference="1087" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="alias" aliasVariable="GPS.y" causality="internal" classIndex="4" classType="rAli" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.p_sat_p.y" startColumn="3" startLine="4" valueReference="1088" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="alias" aliasVariable="GPS.dx" causality="internal" classIndex="5" classType="rAli" endColumn="9" endLine="3" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.v_sat_p.x" startColumn="3" startLine="3" valueReference="1089" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable alias="alias" aliasVariable="GPS.dy" causality="internal" classIndex="6" classType="rAli" endColumn="9" endLine="4" fileName="C:/Users/Mohammed/Desktop/YorkU/trackingARO/Sattraj.mo" fileWritable="true" hideResult="false" isDiscrete="false" isProtected="false" isValueChangeable="false" name="GPS.v_sat_p.y" startColumn="3" startLine="4" valueReference="1090" variability="continuous">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+
+
+
+  </ModelVariables>
+
+
+</fmiModelDescription>

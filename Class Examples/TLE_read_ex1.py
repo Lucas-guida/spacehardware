@@ -2,7 +2,7 @@ import datetime as dt
 import numpy as nm
 import math
 
-tlefile = open(r'C:\Users\Mohammed\Desktop\YorkU\Year 5\ENG 4350 Space Hardware\Labs\P-1\gps-ops.txt','rt')
+tlefile = open(r'C:\Users\Mohammed\Desktop\YorkU\trackingARO\test_date.txt','rt')
 
 line0 = tlefile.readline();
 line1 = tlefile.readline();

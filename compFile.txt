@@ -2,4 +2,4 @@
 # Station: Station Name Tracking Orbit for the GPS BIIA-23 (PRN 18)   
 #--------------------------------------------------------------------------------------------------
 # UTC Date/Time      Azimuth and  AZ_Velocity   Elevation and EL_Velocity
-2018. 118.9.6.30 -36 -9 -48.8 -0.0 9 13 5.0 0.0
+2018. 118.8.59.30 -37 -2 -5.9 -0.0 9 2 1.2 0.0

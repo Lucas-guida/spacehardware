@@ -174,7 +174,12 @@ for i in range(0,int(numSat),1):
     if i == 0:
         (x,y,z,xv,yv,zv)=mod.getSolutions("p.x","p.y","p.z","v.x","v.y","v.z")
         STKout('eciNEW',"27 Apr 2018 23:11:30.836896",times[0],"J2000",[x,y,z],[xv,yv,zv])
-        
+    
+    if i == 0:
+        #print(curr_epoch)
+        (x,y,z,xv,yv,zv,timeSTK)=mod.getSolutions("p2.x","p2.y","p2.z","v2.x","v2.y","v2.z","time")
+        STKout('ecfNEW',"27 Apr 2018 23:11:30.836896",times[0],"Fixed",[x,y,z],[xv,yv,zv])    
+    
     if i == 0:
         #print(curr_epoch)
         (x,y,z,xv,yv,zv,timeSTK)=mod.getSolutions("p3.x","p3.y","p3.z","v3.x","v3.y","v3.z","time")

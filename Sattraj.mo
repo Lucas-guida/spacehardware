@@ -25,7 +25,7 @@ public
   output Vector v_sat_p;
   output Real argper, raan;
 initial equation
-   M = (M0 + N0*(360/86400)*tstart + 360*Ndot2*(tstart/86400)^2 + 360*(Nddot6)*(tstart/86400)^3);
+   M = (M0 + N0*(360/86400)*tstart + 360*Ndot2*(tstart/86400)^2 + 360*(Nddot6)*(tstart/86400)^3)+1.09;
 equation
    //working
    der(M) = (N0*(360/86400) + 2*360*Ndot2*((time)/86400^2) + 3*360*(Nddot6)*((time^2)/86400^3));
@@ -55,6 +55,7 @@ equation
    v_sat_p.y = dy;
    v_sat_p.z = 0;
 end Satellite;
+
 
 
 
@@ -149,7 +150,7 @@ protected
   // Crap Real Tu = ((tm-2451545.0) + (din-2451545.0) + t/86400)/36525.0;
   //Real Ho = 24110.54841 + 8640184.812866*Tu +0.093104*Tu^2 - 6.2*10^(-6)*Tu^3;
   Real Ho = 23991.84441 + 8640185.812866*Tu +0.093104*Tu^2 - 6.2*10^(-6)*Tu^3;
-  Real w = 1.00273790935 + 5.9*10^(-11)*Tu;
+  Real w = 1.00273790935 + 5.9*10^(-11)*Tu- 5.9*10^(-15)*Tu^2;
   //Real GMST;
   Real dt = (din-tm)*86400;
   Real r;
@@ -165,8 +166,10 @@ algorithm
   //r:=1.002737909350795+ (5.9006*10^(-11))*T -(5.9*10^(-15))*T^2;
   //theta_t:= theta_mid +360*r*(d-dm);
 
-  theta_t := mod(Ho + w*((din-tm)*86400 + t),86400)*360/86400;
+  theta_t := mod(Ho + w*((din-tm)*86400 + t),86400)*360/86400 -3;
 end theta_t;
+
+
 
 
 

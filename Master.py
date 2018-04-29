@@ -169,16 +169,16 @@ for i in range(0,int(numSat),1):
     # outputs for testing    
     if i == 0:
         (x,y,z,xv,yv,zv)=mod.getSolutions("GPS.p_sat_p.x","GPS.p_sat_p.y","GPS.p_sat_p.z","GPS.v_sat_p.x","GPS.p_sat_p.y","GPS.p_sat_p.z")
-        STKout('periNEW',"22 Feb 2005 21:15:59.638752",times[0],"Custom Perifocal CentralBody/Earth",[x,y,z],[xv,yv,zv])
+        STKout('periNEW',"27 Apr 2018 23:11:30.836896",times[0],"Custom Perifocal CentralBody/Earth",[x,y,z],[xv,yv,zv])
     
     if i == 0:
         (x,y,z,xv,yv,zv)=mod.getSolutions("p.x","p.y","p.z","v.x","v.y","v.z")
-        STKout('eciNEW',"22 Feb 2005 21:15:59.638752",times[0],"Earth",[x,y,z],[xv,yv,zv])
+        STKout('eciNEW',"27 Apr 2018 23:11:30.836896",times[0],"J2000",[x,y,z],[xv,yv,zv])
         
     if i == 0:
         #print(curr_epoch)
         (x,y,z,xv,yv,zv,timeSTK)=mod.getSolutions("p3.x","p3.y","p3.z","v3.x","v3.y","v3.z","time")
-        STKout('topoNEW',"22 Feb 2005 21:15:59.638752",times[0],"Custom Topo Facility/Algonquin",[x,y,z],[xv,yv,zv])
+        STKout('topoNEW',"27 Apr 2018 23:11:30.836896",times[0],"Custom Topo Facility/Algonquin",[x,y,z],[xv,yv,zv])
     
     # computing the EIRP*Ls*La*Gr
     AOSdB = minLB(AzS, ElS, xs,ys,zs,float(Di),float(Freq),float(EIRP))
@@ -204,7 +204,7 @@ azumith = Azarray[a][startTimesIndex[a]];
 elevation = Elarray[a][startTimesIndex[a]];
 dazumith = dAzarray[a][startTimesIndex[a]];
 delevation = dElarray[a][startTimesIndex[a]];
-#STKpoint('Pointing_Satellite_'+str(a),times[a],Azarray[a],Elarray[a]);
+STKpoint('Pointing_Satellite_'+str(a),times[a],Azarray[a],Elarray[a]);
 # BW is 2 MHz
 # cacculating approx dopler shift should probaby refine
 vs=14000;

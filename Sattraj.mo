@@ -138,16 +138,24 @@ function theta_t
   input Real tm "JDtime of mindnight of day of interest";
   input Real t "system time";
   output Real theta_t "GMST angle (deg)";
+  
 protected
-  Real d = din+(t/86400) - 2451545.0;
-  Real dm = tm - 2451545.0;
-  Real T = d/36525;
-  Real theta_mid;
-  Real GMST;
+  //Real d = din+(t/86400) - 2451545.0;
+  //Real dm = tm - 2451545.0;
+  //Real T = dm/36525.0;
+  //Real theta_mid;
+  constant Real pi = 2*Modelica.Math.asin(1.0);
+  Real Tu = (tm-2451545.0)/36525.0;
+  // Crap Real Tu = ((tm-2451545.0) + (din-2451545.0) + t/86400)/36525.0;
+  //Real Ho = 24110.54841 + 8640184.812866*Tu +0.093104*Tu^2 - 6.2*10^(-6)*Tu^3;
+  Real Ho = 23991.84441 + 8640185.812866*Tu +0.093104*Tu^2 - 6.2*10^(-6)*Tu^3;
+  Real w = 1.00273790935 + 5.9*10^(-11)*Tu;
+  //Real GMST;
+  Real dt = (din-tm)*86400;
   Real r;
 algorithm
   //theta_t := mod(18.697374558 + 24.06570982441908*d,24)*360/24;
-  theta_t := mod(6.697374558 + 0.06570982441908*dm + 1.00273790935*(d-dm)*24 + 0.000026*T^2,24)*360/24;
+  //theta_t := mod(6.697374558 + 0.06570982441908*dm + 1.00273790935*(d-dm)*24 + 0.000026*T^2,24)*360/24;
   
   //theta_t:= mod(6.72000666+ 0.065721398*dm + 0.99373790935*(d-dm)*24,24)*360/24;
 
@@ -155,9 +163,47 @@ algorithm
   //GMST := mod(24110.5484 + 864014.0*T +0.093104*T^2 -(6.2*10^(-6))*T^3,86400);
   //theta_mid:=360*GMST/86400;
   //r:=1.002737909350795+ (5.9006*10^(-11))*T -(5.9*10^(-15))*T^2;
-  //theta_t:= theta_mid +360*r*(d-dm)*86400;
- 
+  //theta_t:= theta_mid +360*r*(d-dm);
+
+  theta_t := mod(Ho + w*((din-tm)*86400 + t),86400)*360/86400;
 end theta_t;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

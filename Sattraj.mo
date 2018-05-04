@@ -45,8 +45,8 @@ equation
    draan = 3*J2*Re^2*cos(inc*pi/180)/(2*a^2*(1-ecc^2)^2)*N0;
    dargper = 3*J2*Re^2*(5*cos(inc*pi/180)^2 - 1)/(2*a^2*(1-ecc^2)^2)*N0;
    
-   raan = raan0 + draan*(tstart + time);
-   argper = argper0 + dargper*(tstart + time);
+   raan = raan0;// + draan*(tstart + time);
+   argper = argper0;// + dargper*(tstart + time);
    
    p_sat_p.x = x;
    p_sat_p.y = y;
@@ -55,6 +55,7 @@ equation
    v_sat_p.y = dy;
    v_sat_p.z = 0;
 end Satellite;
+
 
 
 
@@ -326,6 +327,9 @@ protected
   Real dAzTemp[3];
 algorithm
   azimuth := (atan2(p_sat_topo.x,p_sat_topo.y))*180/pi;
+  if azimuth < 0 then
+    azimuth := azimuth +360;
+  end if;
   elevation := (atan2(p_sat_topo.z,(sqrt(p_sat_topo.x^2 + p_sat_topo.y^2))))*180/pi;
   dAzTemp := (1/(R^2))*cross(vxy,Rxy);
   dAz := dAzTemp[3];
@@ -336,6 +340,7 @@ algorithm
     elevation := 1.e+60; 
   end if;
 end range_topo2look_angles;
+
 
 function range_ECF2topo
   input Vector p_sat_ecf "Satellite position in ECF coords (km)";

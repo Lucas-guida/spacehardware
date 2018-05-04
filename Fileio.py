@@ -139,34 +139,43 @@ def STKpoint(outfile,time,azimuth,elevation):
                 
     fileobj.close;  
 
-def CompFile(name,utc , a, da, e, de):
-    fileobj = open("compFile.txt",'w')
-    header = ['# Any comment and/or Header\n','# Station: Station Name Tracking Orbit for the '+name+'\n','#--------------------------------------------------------------------------------------------------\n',
-              '# UTC Date/Time      Azimuth and  AZ_Velocity   Elevation and EL_Velocity\n'];
+def CompFile(name,num_sat,strt , az, daz, el, dela,startTimesIndex,stopTimesIndex):
+    filename = 'ARO_'+name.replace(' ','')+'.txt';
+    fileobj = open(filename,'w')
+    header = ['# UTC Date/Time   Azimuth and AZ_Velocity   Elevation and EL_Velocity\n'];
     fileobj.writelines(header);   
      
-    y = utc.year;
-    d = utc - dt.datetime(y,1,1)
-    hr= math.floor(d.seconds/60/60)
-    mins = math.floor((d.seconds - math.floor(d.seconds/60/60)*60*60)/60)
+    aos_ind = startTimesIndex[num_sat];
+    los_ind = stopTimesIndex[num_sat];
     
-    if a<0:
-        azh = math.ceil(a)
-        azm = math.ceil((a-azh)*60)
-        azs = round((a-(azh+azm/60))*60*60,1)
-    else:
-        azh = math.floor(a)
-        azm = math.floor((a-azh)*60)
-        azs = round((a-(azh+azm/60))*60*60,1)
-        
-    if e<0:
+    for i in range(0,los_ind-aos_ind-1):
+      utc = strt + dt.timedelta(seconds = aos_ind*60+i*60)  
+      y = utc.year;
+      d = utc - dt.datetime(y,1,1)
+      hr= math.floor(d.seconds/60/60)
+      mins = math.floor((d.seconds - math.floor(d.seconds/60/60)*60*60)/60)
+      a = az[num_sat][aos_ind+i];
+      da = daz[num_sat][aos_ind+i];
+      e = el[num_sat][aos_ind+i];
+      de = dela[num_sat][aos_ind+i];
+      if a<0:
+       azh = math.ceil(a)
+       azm = math.ceil((a-azh)*60)
+       azs = round((a-(azh+azm/60))*60*60,1)
+      else:
+       azh = math.floor(a)
+       azm = math.floor((a-azh)*60)
+       azs = round((a-(azh+azm/60))*60*60,1)
+                
+      if e<0:
         ezh = math.ceil(e)
         ezm = math.ceil((e-ezh)*60)
         ezs = round((e-(ezh+ezm/60))*60*60,1)
-    else:
+      else:
         ezh = math.floor(e)
         ezm = math.floor((e-ezh)*60)
         ezs = round((e-(ezh+ezm/60))*60*60,1)
         
-    line = str(y) + '. '+ str(d.days +1) + '.'+ str(hr) + '.' + str(mins)+'.'+str(d.seconds -hr*60*60 - mins*60) + ' ' + str(azh) + ' ' + str(azm) + ' ' + str(azs) + ' ' + str(round(da,1)) +' '+ str(ezh) + ' ' + str(ezm) + ' ' + str(ezs)+ ' ' + str(round(de,1))
-    fileobj.write(line)
+      line = str(y) + '.'+ str(d.days +1) + '.'+ "{0:0>2}".format(hr) + ':' + "{0:0>2}".format(mins)+':'+"{0:0>2}".format(d.seconds -hr*60*60 - mins*60) + ' ' + "{0:0>2}".format(azh) + ' ' + "{0:0>2}".format(azm) + ' ' + "{0:0>4}".format(azs) + ' ' + str(round(da,1)) +' '+ "{0:0>3}".format(ezh) + ' ' + "{0:0>2}".format(ezm) + ' ' + "{0:0>4}".format(ezs)+ ' ' + str(round(de,1)) + '\n'
+      fileobj.write(line)
+ 

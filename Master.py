@@ -1,4 +1,4 @@
-# Master.py- main program which calls other subfunctions
+2018# Master.py- main program which calls other subfunctions
 from Datefun import doy,frcofd,ep2dat,curday,ep2JD
 from Fileio import Banner,errmsg,ReadStationFile,ReadNoradTLE,STKout,anyKey,STKpoint,CompFile
 import tkinter as tk
@@ -82,8 +82,9 @@ Azarray = [['']*int(duration/stepSize) for i in range(int(numSat))];
 Elarray = [['']*int(duration/stepSize) for i in range(int(numSat))];
 dAzarray = [['']*int(duration/stepSize) for i in range(int(numSat))];
 dElarray = [['']*int(duration/stepSize) for i in range(int(numSat))];
-startTimes = ['']*int(duration/stepSize);
-startTimesIndex = ['']*int(duration/stepSize);
+startTimes = ['']*int(math.ceil(numSat));
+startTimesIndex = ['']*int(math.ceil(numSat));
+stopTimesIndex = ['']*int(math.ceil(numSat));
 distance = ['']*int(numSat)
 ddis = ['']*int(numSat)
 dB = ['']*int(numSat)
@@ -133,6 +134,7 @@ for i in range(0,int(numSat),1):
     zf=z[n]
     Azf=Az.item(n)
     Elf=El.item(n)
+    stopTimesIndex[i]=n;
     for j in range(0,len(times[i])-1):
         if El.item(j) < float(Station.az_el_lim.elmax[0]) and El.item(j) > float(Station.az_el_lim.elmin[0]) and Az.item(j) != 10^60 and El.item(j) != 10^60:
             if start == False:
@@ -158,6 +160,7 @@ for i in range(0,int(numSat),1):
                 zf=z[j]
                 Azf=Az.item(j)
                 Elf=El.item(j)
+                stopTimesIndex[i]=j;
                 break;
         
     startDelta = strt + dt.timedelta(seconds=startTime);
@@ -165,26 +168,26 @@ for i in range(0,int(numSat),1):
     
     if satDuration==0:
         continue;
-    
+    """
     # outputs for testing    
-    if i == 0:
+    if i == 28:
         (x,y,z,xv,yv,zv)=mod.getSolutions("GPS.p_sat_p.x","GPS.p_sat_p.y","GPS.p_sat_p.z","GPS.v_sat_p.x","GPS.p_sat_p.y","GPS.p_sat_p.z")
-        STKout('periNEW',"27 Apr 2018 23:11:30.836896",times[0],"Custom Perifocal CentralBody/Earth",[x,y,z],[xv,yv,zv])
+        STKout('periNEW',"02 May 2018 16:45:00.000000",times[0],"Custom Perifocal CentralBody/Earth",[x,y,z],[xv,yv,zv])
     
-    if i == 0:
+    if i == 28:
         (x,y,z,xv,yv,zv)=mod.getSolutions("p.x","p.y","p.z","v.x","v.y","v.z")
-        STKout('eciNEW',"27 Apr 2018 23:11:30.836896",times[0],"J2000",[x,y,z],[xv,yv,zv])
+        STKout('eciNEW',"02 May 2018 16:45:00.000000",times[0],"J2000",[x,y,z],[xv,yv,zv])
     
-    if i == 0:
+    if i == 28:
         #print(curr_epoch)
         (x,y,z,xv,yv,zv,timeSTK)=mod.getSolutions("p2.x","p2.y","p2.z","v2.x","v2.y","v2.z","time")
-        STKout('ecfNEW',"27 Apr 2018 23:11:30.836896",times[0],"Fixed",[x,y,z],[xv,yv,zv])    
+        STKout('ecfNEW',"02 May 2018 16:45:00.000000",times[0],"Fixed",[x,y,z],[xv,yv,zv])    
     
-    if i == 0:
+    if i == 28:
         #print(curr_epoch)
         (x,y,z,xv,yv,zv,timeSTK)=mod.getSolutions("p3.x","p3.y","p3.z","v3.x","v3.y","v3.z","time")
-        STKout('topoNEW',"27 Apr 2018 23:11:30.836896",times[0],"Custom Topo Facility/Algonquin",[x,y,z],[xv,yv,zv])
-    
+        STKout('topoNEW',"02 May 2018 16:45:00.000000",times[0],"Custom Topo Facility/Algonquin",[x,y,z],[xv,yv,zv])
+    """
     # computing the EIRP*Ls*La*Gr
     AOSdB = minLB(AzS, ElS, xs,ys,zs,float(Di),float(Freq),float(EIRP))
     LOSdB = minLB(Azf, Elf, xf,yf,zf,float(Di),float(Freq),float(EIRP))
@@ -219,6 +222,6 @@ if ddis[a]>=0:
 else:
    f = (2.99*10**8 + vo)*1.57542/(2.99*10**8 - vo) - 1.57542
 
-CompFile(TLEData[a].name, UTC, azumith,dazumith ,elevation,delevation)
+CompFile(TLEData[a].name,a,strt, Azarray,dAzarray,Elarray,dElarray,startTimesIndex,stopTimesIndex)
 
 print( str(UTC) +"      "+ str(round(azumith,2)) +"         "+ str(round(elevation,2)) +"                "+ str(round(dazumith,2)) +"                   "+ str(round(delevation,2)) + "              " + str(round(distance[a],2)) + "                   " + str(round(ddis[a],2)) + "       " + str(f*10**6) + "    "+str(round(dB[a],2)))  
